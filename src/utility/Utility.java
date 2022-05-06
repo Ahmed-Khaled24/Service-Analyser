@@ -1,4 +1,5 @@
 package utility;
+
 import components.API;
 import components.Field;
 import components.ObjectField;
@@ -6,6 +7,7 @@ import components.StringField;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,30 +22,15 @@ public class Utility {
         try {
             inputFile = new FileInputStream(FilePath);
             return new XSSFWorkbook(inputFile);
-        }
-        catch(FileNotFoundException e){
-            throw new IOException("File not found.") ;
+        } catch (FileNotFoundException e) {
+            throw new IOException("File not found.");
         }
     }
 
     // -------------------------------------------------------------------------------------
     // This function is used to store a field into its parent field if it is a nested field.
-    public static void storeField(API thisAPI, Field theField){
+    public static void storeField(API thisAPI, Field theField) {
 
-    }
-
-    // --------------------------------------------------------------------------------------------
-    // This function is used to get the parent field name if it is a nested field else return null.
-    public static String getParentName(String fullName){
-        // Split the fullName string into its components.
-        String [] ArrOfNames = fullName.split("/");
-
-        // Check if it has parents of not.
-        String parentName = null;
-        if(ArrOfNames.length > 1){
-            parentName = ArrOfNames[ArrOfNames.length-2];
-        }
-        return parentName;
     }
 
     // --------------------------------------------------
@@ -55,10 +42,18 @@ public class Utility {
         return ArrOfNames[ArrOfNames.length-1];
     }
 
+    // --------------------------------------------------
+    // This function is used to get the list of ancestors.
+    public static ArrayList<String> getAncestors(String fullName){
+        String [] ArrOfNames = fullName.split("/");
+        ArrayList<String> ancestors = new ArrayList<>(Arrays.asList(ArrOfNames));
+        ancestors.remove(ancestors.size()-1);
+        return ancestors;
+    }
 
     // -------------------------------------------
     // Construct Field object using the given row.
-    public static Field constructFieldObject(XSSFRow thisRow){
+    public static Field constructFieldObject(XSSFRow thisRow) {
         // ---- Indices of each property ----
         final int IO_index = 0;
         final int type_index = 2;
@@ -81,9 +76,9 @@ public class Utility {
         String mandatoryStr = mandatoryCell.toString();
         String allowedValuesStr = allowedValuesCell.toString();
 
-        // Get the name and parentName
+        // Get the name and ancestors list
         String name = getName(fullName);
-        String parentName = getParentName(fullName);
+        ArrayList<String> ancestors = getAncestors(fullName);
 
         // Convert mandatoryStr to Boolean
         boolean mandatory = mandatoryStr.equals("Y");
@@ -93,14 +88,14 @@ public class Utility {
 
         // Convert allowedValuesStr to ArrayList.
         String[] tempArr = allowedValuesStr.split(",");
-        ArrayList<String> allowedValues = new ArrayList<> (Arrays.asList(tempArr));
+        ArrayList<String> allowedValues = new ArrayList<>(Arrays.asList(tempArr));
 
         // check if it is ObjectField or StringField to construct an object.
         Field field;
-        if(type.equalsIgnoreCase("string"))
-            field = new StringField(type, mandatory, allowedValues, name, parentName, io);
+        if (type.equalsIgnoreCase("string"))
+            field = new StringField(type, mandatory, allowedValues, name, ancestors, io);
         else
-            field = new ObjectField(type, mandatory, allowedValues, name, parentName, io);
+            field = new ObjectField(type, mandatory, allowedValues, name, ancestors, io);
 
         // return the constructed field
         return field;
@@ -109,11 +104,11 @@ public class Utility {
 
     // -----------------------------------------------------------------------------------
     // Construct an API object using the given two rows and return reference to the object.
-    public static API constructAPI(XSSFRow nameRow, XSSFRow propertiesRow){ // propertiesRow = nameRow + 2
+    public static API constructAPI(XSSFRow nameRow, XSSFRow propertiesRow) { // propertiesRow = nameRow + 2
         // ---- Index of each property ----
         final int name_index = 0; // in nameRow
         final int HTTP_index = 0; // in propertiesRow
-        final int URL_index  = 1; // in propertiesRow
+        final int URL_index = 1; // in propertiesRow
         // ------------------------------------------
 
         // Hold the wanted cells in temporary variables.
