@@ -1,18 +1,14 @@
-import components.API;
-import components.Service;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import utility.Utility;
-
+import components.*;
+import org.apache.poi.xssf.usermodel.*;
+import utility.*;
 import java.io.IOException;
+import java.util.Locale;
 
 
 public class Main {
     public static void main(String[] args) {
 
-        // Open the Excel file
+        // Open the Excel file.
         String filePath = "../Example.xlsx";
         XSSFWorkbook ExcelFile;
         try {
@@ -23,11 +19,11 @@ public class Main {
             return;
         }
 
-        // Initialize a Service object
+        // Initialize a Service object.
         Service service = new Service("ExampleService");
 
-        // Initialize a pointer to the current API
-        API currentAPI;
+        // Initialize a pointer to the current API.
+        API currentAPI = new API();
 
         // -------------------- Analyze the Excel file --------------------
         // ----------------------------------------------------------------
@@ -48,11 +44,13 @@ public class Main {
                 XSSFRow currentRow = currentSheet.getRow(currentRowIndex);
                 XSSFCell firstCell = currentRow.getCell(0);
 
+                // ---------- Blank Row ----------
                 // If the first cell is null so this row is empty.
                 if (firstCell == null) {
                     IsObjectRow = false;
                 }
 
+                // ---------- API Row ----------
                 // If the first cell contains API name so this row and the next two rows represents the API.
                 else if (firstCell.toString().contains("API_NAME")) {
                     // To stop processing the rows as object rows
@@ -65,15 +63,19 @@ public class Main {
                     service.addAPI(currentAPI);
                 }
 
+                // ---------- Objects header Row ----------
                 // If the first cell contains "I/O" so this row is the header row for the objects
-                else if (firstCell.toString().equals("I/O")) {
-                    // For the next set of rows it we be considered object rows until a new API row found.
+                else if (firstCell.toString().equalsIgnoreCase("i/o")) {
+                    // For the next set of rows it will be considered object rows until a new API row found.
                     IsObjectRow = true;
                 }
 
+                // ---------- Object Row ----------
                 else if (IsObjectRow) {
-                    // To do: construct Field object.
-                    // To do: store the constructed object in its right place in the API.
+                    // Construct Field object.
+                    Field tempField = Utility.constructFieldObject(currentRow);
+                    // Store it in its right place.
+                    Utility.storeField(currentAPI, tempField);
                 }
             }
         }
