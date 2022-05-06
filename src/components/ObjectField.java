@@ -22,13 +22,18 @@ public final class ObjectField extends Field {
     public void setChildrenFields(ArrayList<Field> childrenFields) {
         this.childrenFields = childrenFields;
     }
-//    private int findObjectField(String objectName) { // this method to search and find the index of ****** in ***** array list
-//        for (int i = 0; i < this.childrenFields.size(); i++) {
-//            childrenFields childrenFields = this.childrenFields.get(i);
-//            if (childrenFields.getobjectName().equals(objectName)) {
-//                return i;
-//            }
-//        }
-//        return -1;
-//    }
+
+    public void addSubField(Field field){
+        this.childrenFields.add(field);
+    }
+
+/*    private int findObjectField(String objectName) { // this method to search and find the index of ****** in ***** array list
+        for (int i = 0; i < this.childrenFields.size(); i++) {
+            childrenFields childrenFields = this.childrenFields.get(i);
+            if (childrenFields.getobjectName().equals(objectName)) {
+                return i;
+            }
+        }
+        return -1;
+    }*/
 }
