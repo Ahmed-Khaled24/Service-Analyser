@@ -29,4 +29,8 @@ public class Service {
     public void setAPIs(ArrayList<API> APIs) {
         this.APIs = APIs;
     }
+
+    public void addAPI(API api){
+        this.APIs.add(api);
+    }
 }
