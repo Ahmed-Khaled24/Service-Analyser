@@ -48,4 +48,8 @@ public class API {
     public void setFields(ArrayList<Field> fields) {
         this.fields = fields;
     }
+
+    public void addField(Field field){
+        fields.add(field);
+    }
 }
