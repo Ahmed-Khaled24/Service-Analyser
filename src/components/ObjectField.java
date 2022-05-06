@@ -26,13 +26,14 @@ public final class ObjectField extends Field {
         this.childrenFields.add(field);
     }
 
-/*    private int findObjectField(String objectName) { // this method to search and find the index of ****** in ***** array list
+    // This method to search and find the index of subField in childrenFields ArrayList.
+    private int find(String subFieldName) {
         for (int i = 0; i < this.childrenFields.size(); i++) {
-            childrenFields childrenFields = this.childrenFields.get(i);
-            if (childrenFields.getobjectName().equals(objectName)) {
+            Field temp = childrenFields.get(i);
+            if(temp.getName().equals(subFieldName))
                 return i;
-            }
         }
         return -1;
-    }*/
+
+    }
 }
