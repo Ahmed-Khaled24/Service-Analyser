@@ -2,8 +2,6 @@ import components.*;
 import org.apache.poi.xssf.usermodel.*;
 import utility.*;
 import java.io.IOException;
-import java.util.Locale;
-
 
 public class Main {
     public static void main(String[] args) {

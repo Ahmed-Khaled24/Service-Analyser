@@ -52,4 +52,12 @@ public class API {
     public void addField(Field field){
         fields.add(field);
     }
+
+    public ObjectField find(String name){
+        for(Field f: this.fields){
+            if(f.getName().equals(name))
+                return (ObjectField) f;
+        }
+        return null;
+    }
 }

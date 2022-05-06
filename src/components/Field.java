@@ -21,6 +21,10 @@ public class Field {
         this.ancestors = ancestors;
     }
 
+    public boolean equals(Field other) {
+        return this.name.equals(other.getName());
+    }
+
     public String getType() {
         return type;
     }
@@ -68,4 +72,5 @@ public class Field {
     public void setAncestors(ArrayList<String> ancestors){
         this.ancestors = ancestors;
     }
+
 }

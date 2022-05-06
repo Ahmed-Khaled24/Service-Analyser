@@ -30,7 +30,28 @@ public class Utility {
     // -------------------------------------------------------------------------------------
     // This function is used to store a field into its parent field if it is a nested field.
     public static void storeField(API thisAPI, Field theField) {
+        // Check if the Object has ancestors.
+        // If not store it in the API as an ancestor.
+        if(theField.getAncestors().isEmpty()){
+            thisAPI.addField(theField);
+        }
+        // If it has ancestors, loop through the objects to find its direct parent.
+        else {
+            ObjectField parentPtr = null;
+            ArrayList<String> ancestors = theField.getAncestors();
+            for(int i = 0 ; i< ancestors.size(); i++){
 
+                // In the first loop search in the API.
+                if(i == 0 )
+                    parentPtr = thisAPI.find(ancestors.get(i));
+                // In all other loops search in subFields.
+                else
+                    parentPtr = parentPtr.find(ancestors.get(i));
+            }
+
+            // Add theField to its direct parent childrenFields.
+            parentPtr.addSubField(theField);
+        }
     }
 
     // --------------------------------------------------

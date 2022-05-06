@@ -5,6 +5,9 @@ import java.util.ArrayList;
 public final class ObjectField extends Field {
     private ArrayList<Field> childrenFields;
 
+    public ObjectField(){
+    }
+
     public ObjectField(String type, boolean mandatory, ArrayList<String> allowedValues, String name, ArrayList<String> ancestors, char IO) {
         super(type, mandatory, allowedValues, name, ancestors, IO);
         this.childrenFields = new ArrayList<>();
@@ -22,14 +25,11 @@ public final class ObjectField extends Field {
         this.childrenFields.add(field);
     }
 
-    // This method to search and find the index of subField in childrenFields ArrayList.
-    public int find(String subFieldName) {
-        for (int i = 0; i < this.childrenFields.size(); i++) {
-            Field temp = childrenFields.get(i);
-            if(temp.getName().equals(subFieldName))
-                return i;
+    public ObjectField find(String name){
+        for(Field f: this.childrenFields){
+            if(f.getName().equals(name))
+                return (ObjectField) f;
         }
-        return -1;
-
+        return null;
     }
 }
