@@ -1,11 +1,16 @@
 package utility;
 import components.API;
+import components.Field;
+import components.ObjectField;
+import components.StringField;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Utility {
 
@@ -21,25 +26,84 @@ public class Utility {
         }
     }
 
-    public static void constructFieldObject(XSSFRow thisRow, API currentAPI){
-        // ---- Indices of each property ----
-        final int IO_index = 0;
-        final int fieldName_index = 1;
-        final int type_index = 2;
-        final int allowedValues_index = 3;
-        final int mandatory_index = 4;
-        // -------------------------------------------------
+    // -------------------------------------------------------------------------------------
+    // This function is used to store a field into its parent field if it is a nested field.
+    public static void storeField(API thisAPI, Field theField){
 
-        // To do: complete the function
     }
 
+    // --------------------------------------------------------------------------------------------
+    // This function is used to get the parent field name if it is a nested field else return null.
+    public static String getParentName(String fullName){
+    return null;
+    }
+
+    // --------------------------------------------------
+    // This function is used to get the name of the field.
+    public static String getName(String fullName){
+    return null;
+    }
+
+
+    // -------------------------------------------
+    // Construct Field object using the given row.
+    public static Field constructFieldObject(XSSFRow thisRow){
+        // ---- Indices of each property ----
+        final int IO_index = 0;
+        final int type_index = 2;
+        final int mandatory_index = 4;
+        final int fullName_index = 1;
+        final int allowedValues_index = 3;
+        // -------------------------------
+
+        // Hold the wanted cells in temporary variables.
+        XSSFCell ioCell = thisRow.getCell(IO_index);
+        XSSFCell typeCell = thisRow.getCell(type_index);
+        XSSFCell fullNameCell = thisRow.getCell(fullName_index);
+        XSSFCell mandatoryCell = thisRow.getCell(mandatory_index);
+        XSSFCell allowedValuesCell = thisRow.getCell(allowedValues_index);
+
+        // Extract the data from the cells into strings.
+        String ioStr = ioCell.toString();
+        String type = typeCell.toString();
+        String fullName = fullNameCell.toString();
+        String mandatoryStr = mandatoryCell.toString();
+        String allowedValuesStr = allowedValuesCell.toString();
+
+        // Get the name and parentName
+        String name = getName(fullName);
+        String parentName = getParentName(fullName);
+
+        // Convert mandatoryStr to Boolean
+        boolean mandatory = mandatoryStr.equals("Y");
+
+        // Convert ioStr to char
+        char io = ioStr.charAt(0);
+
+        // Convert allowedValuesStr to ArrayList.
+        String[] tempArr = allowedValuesStr.split(",");
+        ArrayList<String> allowedValues = new ArrayList<> (Arrays.asList(tempArr));
+
+        // check if it is ObjectField or StringField to construct an object.
+        Field field;
+        if(type.equalsIgnoreCase("string"))
+            field = new StringField(type, mandatory, allowedValues, name, parentName, io);
+        else
+            field = new ObjectField(type, mandatory, allowedValues, name, parentName, io);
+
+        // return the constructed field
+        return field;
+
+    }
+
+    // -----------------------------------------------------------------------------------
     // Construct an API object using the given two rows and return reference to the object.
     public static API constructAPI(XSSFRow nameRow, XSSFRow propertiesRow){ // propertiesRow = nameRow + 2
         // ---- Index of each property ----
         final int name_index = 0; // in nameRow
         final int HTTP_index = 0; // in propertiesRow
         final int URL_index  = 1; // in propertiesRow
-        // -------------------------------------------------
+        // ------------------------------------------
 
         // Hold the wanted cells in temporary variables.
         XSSFCell nameCell = nameRow.getCell(name_index);
