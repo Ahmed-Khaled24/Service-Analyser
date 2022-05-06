@@ -6,11 +6,12 @@ public class Service {
     private ArrayList<API> APIs;
 
     public Service() {
+        this("noName");
     }
 
-    public Service(String name, ArrayList<API> APIs) {
+    public Service(String name) {
         this.name = name;
-        this.APIs = APIs;
+        this.APIs = new ArrayList<>();
     }
 
     public String getName() {
