@@ -7,16 +7,18 @@ public class Field {
     private ArrayList<String> allowedValues;
     private String name;
     private char IO;
+    private String parentFieldName;
 
     public Field() {
     }
 
-    public Field(String type, boolean mandatory, ArrayList<String> allowedValues, String name, char IO) {
+    public Field(String type, boolean mandatory, ArrayList<String> allowedValues, String name, String parentFieldName, char IO) {
         this.type = type;
         this.mandatory = mandatory;
         this.allowedValues = allowedValues;
         this.name = name;
         this.IO = IO;
+        this.parentFieldName = parentFieldName;
     }
 
     public String getType() {
@@ -57,5 +59,13 @@ public class Field {
 
     public void setIO(char IO) {
         this.IO = IO;
+    }
+
+    public String getParentFieldName(){
+        return this.parentFieldName;
+    }
+
+    public void setParentFieldName(String name){
+        this.parentFieldName = name;
     }
 }
