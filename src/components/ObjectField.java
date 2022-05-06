@@ -9,10 +9,9 @@ public final class ObjectField extends Field {
         this.childrenFields = childrenFields;
     }
 
-    public ObjectField(String type, boolean mandatory, ArrayList<String> allowedValues,
-                       String name, char IO, ArrayList<Field> childrenFields) {
-        super(type, mandatory, allowedValues, name, IO);
-        this.childrenFields = childrenFields;
+    public ObjectField(String type, boolean mandatory, ArrayList<String> allowedValues, String name, String parentFieldName, char IO) {
+        super(type, mandatory, allowedValues, name, parentFieldName, IO);
+        this.childrenFields = new ArrayList<>();
     }
 
     public ArrayList<Field> getChildrenFields() {
@@ -23,7 +22,7 @@ public final class ObjectField extends Field {
         this.childrenFields = childrenFields;
     }
 
-    public void addSubField(Field field){
+    public void addSubField(Field field) {
         this.childrenFields.add(field);
     }
 
