@@ -7,18 +7,18 @@ public class Field {
     private ArrayList<String> allowedValues;
     private String name;
     private char IO;
-    private String parentFieldName;
+    private ArrayList<String> ancestors;
 
     public Field() {
     }
 
-    public Field(String type, boolean mandatory, ArrayList<String> allowedValues, String name, String parentFieldName, char IO) {
+    public Field(String type, boolean mandatory, ArrayList<String> allowedValues, String name, ArrayList<String> ancestors, char IO) {
         this.type = type;
         this.mandatory = mandatory;
         this.allowedValues = allowedValues;
         this.name = name;
         this.IO = IO;
-        this.parentFieldName = parentFieldName;
+        this.ancestors = ancestors;
     }
 
     public String getType() {
@@ -61,11 +61,11 @@ public class Field {
         this.IO = IO;
     }
 
-    public String getParentFieldName(){
-        return this.parentFieldName;
+    public ArrayList<String> getAncestors(){
+        return this.ancestors;
     }
 
-    public void setParentFieldName(String name){
-        this.parentFieldName = name;
+    public void setAncestors(ArrayList<String> ancestors){
+        this.ancestors = ancestors;
     }
 }
