@@ -35,13 +35,24 @@ public class Utility {
     // --------------------------------------------------------------------------------------------
     // This function is used to get the parent field name if it is a nested field else return null.
     public static String getParentName(String fullName){
-    return null;
+        // Split the fullName string into its components.
+        String [] ArrOfNames = fullName.split("/");
+
+        // Check if it has parents of not.
+        String parentName = null;
+        if(ArrOfNames.length > 1){
+            parentName = ArrOfNames[ArrOfNames.length-2];
+        }
+        return parentName;
     }
 
     // --------------------------------------------------
     // This function is used to get the name of the field.
     public static String getName(String fullName){
-    return null;
+        // Split the fullName string into its components.
+        String [] ArrOfNames = fullName.split("/");
+        // Return its name.
+        return ArrOfNames[ArrOfNames.length-1];
     }
 
 
