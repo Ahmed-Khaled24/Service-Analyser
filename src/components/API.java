@@ -10,11 +10,11 @@ public class API {
     public API() {
     }
 
-    public API(String name, String operation, String REST_URL, ArrayList<Field> fields) {
+    public API(String name, String operation, String REST_URL) {
         this.name = name;
         this.operation = operation;
         this.REST_URL = REST_URL;
-        this.fields = fields;
+        this.fields = new ArrayList<>();
     }
 
     public String getName() {
