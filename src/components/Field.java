@@ -9,6 +9,7 @@ public class Field {
     private char IO;
     private ArrayList<String> ancestors;
 
+    // ------------------------ Constructors ------------------------
     public Field() {
     }
 
@@ -21,56 +22,54 @@ public class Field {
         this.ancestors = ancestors;
     }
 
-    public boolean equals(Field other) {
-        return this.name.equals(other.getName());
-    }
 
+    // ------------------------ Getters ------------------------
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public boolean isMandatory() {
         return mandatory;
     }
 
-    public void setMandatory(boolean mandatory) {
-        this.mandatory = mandatory;
-    }
-
     public ArrayList<String> getAllowedValues() {
         return allowedValues;
-    }
-
-    public void setAllowedValues(ArrayList<String> allowedValues) {
-        this.allowedValues = allowedValues;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public char getIO() {
         return IO;
+    }
+
+    public ArrayList<String> getAncestors() {
+        return ancestors;
+    }
+
+    // ------------------------ Setters ------------------------
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setMandatory(boolean mandatory) {
+        this.mandatory = mandatory;
+    }
+
+    public void setAllowedValues(ArrayList<String> allowedValues) {
+        this.allowedValues = allowedValues;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setIO(char IO) {
         this.IO = IO;
     }
 
-    public ArrayList<String> getAncestors(){
-        return this.ancestors;
-    }
-
-    public void setAncestors(ArrayList<String> ancestors){
+    public void setAncestors(ArrayList<String> ancestors) {
         this.ancestors = ancestors;
     }
-
 }
