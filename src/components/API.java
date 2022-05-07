@@ -8,9 +8,9 @@ public class API {
     private ArrayList<Field> fields;
     private ArrayList<Field> AllObjects;
 
+    // ------------------------ Constructors ------------------------
     public API() {
     }
-
     public API(String name, String operation, String REST_URL) {
         this.name = name;
         this.operation = operation;
@@ -19,38 +19,49 @@ public class API {
         this.AllObjects = new ArrayList<>();
     }
 
+    // ------------------------ Getters ------------------------
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getOperation() {
         return operation;
     }
 
-    public void setOperation(String operation) {
-        this.operation = operation;
-    }
-
     public String getREST_URL() {
         return REST_URL;
-    }
-
-    public void setREST_URL(String REST_URL) {
-        this.REST_URL = REST_URL;
     }
 
     public ArrayList<Field> getFields() {
         return fields;
     }
 
+    public ArrayList<Field> getAllObjects() {
+        return AllObjects;
+    }
+
+    // ------------------------ Setters ------------------------
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+
+    public void setREST_URL(String REST_URL) {
+        this.REST_URL = REST_URL;
+    }
+
     public void setFields(ArrayList<Field> fields) {
         this.fields = fields;
     }
 
+    public void setAllObjects(ArrayList<Field> allObjects) {
+        AllObjects = allObjects;
+    }
+
+    // ------------------------ Methods ------------------------
     public void addField(Field field){
         fields.add(field);
     }
@@ -63,19 +74,7 @@ public class API {
         return null;
     }
 
-    public int find (Field field){
-        for(int i = 0 ; i< this.fields.size(); i++){
-            if(field.getName().equals(this.fields.get(i).getName()))
-                return i;
-        }
-        return -1;
-    }
-
-    public ArrayList<Field> getAllObjects() {
-        return AllObjects;
-    }
-
-    public void addObject(Field field){
+    public void addToAllObject(Field field){
         this.AllObjects.add(field);
     }
 }
