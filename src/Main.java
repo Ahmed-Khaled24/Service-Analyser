@@ -10,7 +10,7 @@ public class Main {
         String filePath = "../Example.xlsx";
         XSSFWorkbook ExcelFile;
         try {
-            ExcelFile = Utility.GetExcelObject(filePath);
+            ExcelFile = Utility.constructExcelObject(filePath);
         } catch (IOException e) {
             System.out.println(e.getMessage());
             System.out.println("Exiting the program now.");
@@ -33,14 +33,17 @@ public class Main {
 
             // ----- Row level -----
             boolean IsObjectRow = false;
-            int numberOfRows = currentSheet.getPhysicalNumberOfRows();
-            for (int currentRowIndex = 0; currentRowIndex < numberOfRows; currentRowIndex++) {
+            int numberOfRows = currentSheet.getLastRowNum();
+            for (int currentRowIndex = 0; currentRowIndex <= numberOfRows; currentRowIndex++) {
 
                 // The first cell is unique for each type of row (object row, object header row, API header row, API properties row)
                 // so the first cell will be checked to determine what should be done.
 
                 XSSFRow currentRow = currentSheet.getRow(currentRowIndex);
-                XSSFCell firstCell = currentRow.getCell(0);
+                XSSFCell firstCell = null;
+                if(currentRow != null){
+                    firstCell = currentRow.getCell(0);
+                }
 
                 // ---------- Blank Row ----------
                 // If the first cell is null so this row is empty.
@@ -72,10 +75,16 @@ public class Main {
                 else if (IsObjectRow) {
                     // Construct Field object.
                     Field tempField = Utility.constructFieldObject(currentRow);
-                    // Store it in its right place.
+
+                    // Store the objects in ArrayList for easy traverse without recursion.
+                    if(tempField.getName().contains("object"))
+                        currentAPI.addObject(tempField);
+
                     Utility.storeField(currentAPI, tempField);
                 }
             }
         }
+        System.out.println("Fine");
     }
+
 }

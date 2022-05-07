@@ -1,13 +1,7 @@
 package utility;
 
-import components.API;
-import components.Field;
-import components.ObjectField;
-import components.StringField;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
+import components.*;
+import org.apache.poi.xssf.usermodel.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,7 +10,7 @@ import java.util.Arrays;
 
 public class Utility {
 
-    public static XSSFWorkbook GetExcelObject(String FilePath) throws IOException {
+    public static XSSFWorkbook constructExcelObject(String FilePath) throws IOException {
 
         FileInputStream inputFile;
         try {
@@ -31,26 +25,23 @@ public class Utility {
     // This function is used to store a field into its parent field if it is a nested field.
     public static void storeField(API thisAPI, Field theField) {
         // Check if the Object has ancestors.
+
         // If not store it in the API as an ancestor.
         if(theField.getAncestors().isEmpty()){
             thisAPI.addField(theField);
         }
         // If it has ancestors, loop through the objects to find its direct parent.
         else {
-            ObjectField parentPtr = null;
             ArrayList<String> ancestors = theField.getAncestors();
-            for(int i = 0 ; i< ancestors.size(); i++){
-
-                // In the first loop search in the API.
-                if(i == 0 )
-                    parentPtr = thisAPI.find(ancestors.get(i));
-                // In all other loops search in subFields.
-                else
-                    parentPtr = parentPtr.find(ancestors.get(i));
+            ObjectField parent = thisAPI.find(ancestors.get(0));
+            for(int i = 1  ; i < ancestors.size(); i++){
+                if(parent != null)
+                parent = parent.find(ancestors.get(i));
             }
 
-            // Add theField to its direct parent childrenFields.
-            parentPtr.addSubField(theField);
+            // Add theField to its direct parent childrenFields ArrayList.
+            if(parent != null)
+                parent.addSubField(theField);
         }
     }
 
@@ -78,8 +69,8 @@ public class Utility {
         // ---- Indices of each property ----
         final int IO_index = 0;
         final int type_index = 2;
-        final int mandatory_index = 4;
         final int fullName_index = 1;
+        final int mandatory_index = 4;
         final int allowedValues_index = 3;
         // -------------------------------
 
@@ -100,6 +91,7 @@ public class Utility {
         // Get the name and ancestors list
         String name = getName(fullName);
         ArrayList<String> ancestors = getAncestors(fullName);
+        ancestors.remove("");
 
         // Convert mandatoryStr to Boolean
         boolean mandatory = mandatoryStr.equals("Y");
@@ -110,6 +102,7 @@ public class Utility {
         // Convert allowedValuesStr to ArrayList.
         String[] tempArr = allowedValuesStr.split(",");
         ArrayList<String> allowedValues = new ArrayList<>(Arrays.asList(tempArr));
+        allowedValues.remove("");
 
         // check if it is ObjectField or StringField to construct an object.
         Field field;
@@ -117,7 +110,6 @@ public class Utility {
             field = new StringField(type, mandatory, allowedValues, name, ancestors, io);
         else
             field = new ObjectField(type, mandatory, allowedValues, name, ancestors, io);
-
         // return the constructed field
         return field;
 
@@ -125,7 +117,7 @@ public class Utility {
 
     // -----------------------------------------------------------------------------------
     // Construct an API object using the given two rows and return reference to the object.
-    public static API constructAPI(XSSFRow nameRow, XSSFRow propertiesRow) { // propertiesRow = nameRow + 2
+    public static API constructAPI(XSSFRow nameRow, XSSFRow propertiesRow) {
         // ---- Index of each property ----
         final int name_index = 0; // in nameRow
         final int HTTP_index = 0; // in propertiesRow

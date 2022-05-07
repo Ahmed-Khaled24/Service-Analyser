@@ -8,8 +8,8 @@ public final class ObjectField extends Field {
     public ObjectField(){
     }
 
-    public ObjectField(String type, boolean mandatory, ArrayList<String> allowedValues, String name, ArrayList<String> ancestors, char IO) {
-        super(type, mandatory, allowedValues, name, ancestors, IO);
+    public ObjectField(String type, boolean mandatory, ArrayList<String> allowedValues, String name, ArrayList<String> ancestors, char io) {
+        super(type, mandatory, allowedValues, name, ancestors, io);
         this.childrenFields = new ArrayList<>();
     }
 

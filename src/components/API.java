@@ -6,6 +6,7 @@ public class API {
     private String operation;
     private String REST_URL;
     private ArrayList<Field> fields;
+    private ArrayList<Field> AllObjects;
 
     public API() {
     }
@@ -15,6 +16,7 @@ public class API {
         this.operation = operation;
         this.REST_URL = REST_URL;
         this.fields = new ArrayList<>();
+        this.AllObjects = new ArrayList<>();
     }
 
     public String getName() {
@@ -59,5 +61,21 @@ public class API {
                 return (ObjectField) f;
         }
         return null;
+    }
+
+    public int find (Field field){
+        for(int i = 0 ; i< this.fields.size(); i++){
+            if(field.getName().equals(this.fields.get(i).getName()))
+                return i;
+        }
+        return -1;
+    }
+
+    public ArrayList<Field> getAllObjects() {
+        return AllObjects;
+    }
+
+    public void addObject(Field field){
+        this.AllObjects.add(field);
     }
 }

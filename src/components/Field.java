@@ -12,12 +12,12 @@ public class Field {
     public Field() {
     }
 
-    public Field(String type, boolean mandatory, ArrayList<String> allowedValues, String name, ArrayList<String> ancestors, char IO) {
+    public Field(String type, boolean mandatory, ArrayList<String> allowedValues, String name, ArrayList<String> ancestors, char io) {
         this.type = type;
         this.mandatory = mandatory;
         this.allowedValues = allowedValues;
         this.name = name;
-        this.IO = IO;
+        this.IO = io;
         this.ancestors = ancestors;
     }
 
