@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 public class Field {
     private String type;
-    private boolean mandatory;
+    private boolean isMandatory;
     private ArrayList<String> allowedValues;
     private String name;
-    private char IO;
+    private char io;
     private ArrayList<String> ancestors;
 
     // ------------------------ Constructors ------------------------
@@ -15,13 +15,12 @@ public class Field {
 
     public Field(String type, boolean mandatory, ArrayList<String> allowedValues, String name, ArrayList<String> ancestors, char io) {
         this.type = type;
-        this.mandatory = mandatory;
+        this.isMandatory = mandatory;
         this.allowedValues = allowedValues;
         this.name = name;
-        this.IO = io;
+        this.io = io;
         this.ancestors = ancestors;
     }
-
 
     // ------------------------ Getters ------------------------
     public String getType() {
@@ -29,7 +28,7 @@ public class Field {
     }
 
     public boolean isMandatory() {
-        return mandatory;
+        return isMandatory;
     }
 
     public ArrayList<String> getAllowedValues() {
@@ -40,8 +39,8 @@ public class Field {
         return name;
     }
 
-    public char getIO() {
-        return IO;
+    public char getIo() {
+        return io;
     }
 
     public ArrayList<String> getAncestors() {
@@ -54,7 +53,7 @@ public class Field {
     }
 
     public void setMandatory(boolean mandatory) {
-        this.mandatory = mandatory;
+        this.isMandatory = mandatory;
     }
 
     public void setAllowedValues(ArrayList<String> allowedValues) {
@@ -65,8 +64,8 @@ public class Field {
         this.name = name;
     }
 
-    public void setIO(char IO) {
-        this.IO = IO;
+    public void setIo(char io) {
+        this.io = io;
     }
 
     public void setAncestors(ArrayList<String> ancestors) {

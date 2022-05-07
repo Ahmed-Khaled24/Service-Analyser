@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public final class ObjectField extends Field {
     private ArrayList<Field> childrenFields;
 
+    // ------------------------ Constructors ------------------------
     public ObjectField(){
     }
 
@@ -13,14 +14,17 @@ public final class ObjectField extends Field {
         this.childrenFields = new ArrayList<>();
     }
 
+    // ------------------------ Getters ------------------------
     public ArrayList<Field> getChildrenFields() {
         return childrenFields;
     }
 
+    // ------------------------ Setters ------------------------
     public void setChildrenFields(ArrayList<Field> childrenFields) {
         this.childrenFields = childrenFields;
     }
 
+    // ------------------------ Methods ------------------------
     public void addSubField(Field field) {
         this.childrenFields.add(field);
     }

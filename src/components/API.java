@@ -4,9 +4,9 @@ import java.util.ArrayList;
 public class API {
     private String name;
     private String operation;
-    private String REST_URL;
+    private String URL;
     private ArrayList<Field> fields;
-    private ArrayList<Field> AllObjects;
+    private ArrayList<Field> allObjects;
 
     // ------------------------ Constructors ------------------------
     public API() {
@@ -14,9 +14,9 @@ public class API {
     public API(String name, String operation, String REST_URL) {
         this.name = name;
         this.operation = operation;
-        this.REST_URL = REST_URL;
+        this.URL = REST_URL;
         this.fields = new ArrayList<>();
-        this.AllObjects = new ArrayList<>();
+        this.allObjects = new ArrayList<>();
     }
 
     // ------------------------ Getters ------------------------
@@ -28,8 +28,8 @@ public class API {
         return operation;
     }
 
-    public String getREST_URL() {
-        return REST_URL;
+    public String getURL() {
+        return URL;
     }
 
     public ArrayList<Field> getFields() {
@@ -37,7 +37,7 @@ public class API {
     }
 
     public ArrayList<Field> getAllObjects() {
-        return AllObjects;
+        return allObjects;
     }
 
     // ------------------------ Setters ------------------------
@@ -49,8 +49,8 @@ public class API {
         this.operation = operation;
     }
 
-    public void setREST_URL(String REST_URL) {
-        this.REST_URL = REST_URL;
+    public void setURL(String URL) {
+        this.URL = URL;
     }
 
     public void setFields(ArrayList<Field> fields) {
@@ -58,7 +58,7 @@ public class API {
     }
 
     public void setAllObjects(ArrayList<Field> allObjects) {
-        AllObjects = allObjects;
+        this.allObjects = allObjects;
     }
 
     // ------------------------ Methods ------------------------
@@ -75,6 +75,6 @@ public class API {
     }
 
     public void addToAllObject(Field field){
-        this.AllObjects.add(field);
+        this.allObjects.add(field);
     }
 }
