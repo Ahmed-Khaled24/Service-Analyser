@@ -36,7 +36,7 @@ public class Utility {
         return service;
     }
 
-    public static void analyseExcelSheet(XSSFSheet sheet, Service service){
+    private static void analyseExcelSheet(XSSFSheet sheet, Service service){
 /*
     This function takes Excel sheet and Service object to analyse the sheet to get the contained APIs and
     store them in the given service object.
@@ -85,7 +85,7 @@ public class Utility {
         }
     }
 
-    public static XSSFWorkbook constructExcelObject(String FilePath) throws IOException {
+    private static XSSFWorkbook constructExcelObject(String FilePath) throws IOException {
 /*
     This function takes Excel file path and return the Excel file as an object.
 */
@@ -98,7 +98,7 @@ public class Utility {
         }
     }
 
-    public static API constructAPI(XSSFRow nameRow, XSSFRow propertiesRow) {
+    private static API constructAPI(XSSFRow nameRow, XSSFRow propertiesRow) {
 /*
     This function takes two rows from the Excel file and return an API object.
 */
@@ -143,7 +143,7 @@ public class Utility {
         return ancestors;
     }
 
-    public static Field constructField(XSSFRow thisRow) {
+    private static Field constructField(XSSFRow thisRow) {
 /*
     This function takes Excel row and return a Field Object (StringObject or ObjectField depends on the type column).
 */
@@ -195,7 +195,7 @@ public class Utility {
         return field;
     }
 
-    public static void storeField(API api, Field field) {
+    private static void storeField(API api, Field field) {
 /*
     This function takes API and Filed objects and store the Filed in its right position in The API object.
 */
