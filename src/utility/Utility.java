@@ -214,7 +214,7 @@ public class Utility {
                 if (directParent != null) directParent = directParent.find(ancestors.get(i));
 
             // Add field to its directParent childrenFields ArrayList.
-            if (directParent != null) directParent.addSubField(field);
+            if (directParent != null) directParent.addChildField(field);
         }
     }
 

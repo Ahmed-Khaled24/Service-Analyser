@@ -25,7 +25,7 @@ public final class ObjectField extends Field {
     }
 
     // ------------------------ Methods ------------------------
-    public void addSubField(Field field) {
+    public void addChildField(Field field) {
         this.childrenFields.add(field);
     }
 
