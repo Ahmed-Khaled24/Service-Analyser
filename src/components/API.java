@@ -6,17 +6,18 @@ public class API {
     private String operation;
     private String URL;
     private ArrayList<Field> fields;
-    private ArrayList<Field> allObjects;
+    private ArrayList<Field> RequestObjects;
+    private ArrayList<Field> ResponseObjects;
 
     // ------------------------ Constructors ------------------------
-    public API() {
-    }
+    public API() {}
     public API(String name, String operation, String REST_URL) {
         this.name = name;
         this.operation = operation;
         this.URL = REST_URL;
         this.fields = new ArrayList<>();
-        this.allObjects = new ArrayList<>();
+        this.RequestObjects = new ArrayList<>();
+        this.ResponseObjects = new ArrayList<>();
     }
 
     // ------------------------ Getters ------------------------
@@ -36,8 +37,12 @@ public class API {
         return fields;
     }
 
-    public ArrayList<Field> getAllObjects() {
-        return allObjects;
+    public ArrayList<Field> getRequestObjects() {
+        return RequestObjects;
+    }
+
+    public ArrayList<Field> getResponseObjects() {
+        return ResponseObjects;
     }
 
     // ------------------------ Setters ------------------------
@@ -57,8 +62,12 @@ public class API {
         this.fields = fields;
     }
 
-    public void setAllObjects(ArrayList<Field> allObjects) {
-        this.allObjects = allObjects;
+    public void setRequestObjects(ArrayList<Field> requestObjects) {
+        RequestObjects = requestObjects;
+    }
+
+    public void setResponseObjects(ArrayList<Field> responseObjects) {
+        ResponseObjects = responseObjects;
     }
 
     // ------------------------ Methods ------------------------
@@ -74,7 +83,11 @@ public class API {
         return null;
     }
 
-    public void addToAllObject(Field field){
-        this.allObjects.add(field);
+    public void addRequestObject(Field field){
+        this.RequestObjects.add(field);
+    }
+
+    public void addResponseObject(Field field){
+        this.ResponseObjects.add(field);
     }
 }
