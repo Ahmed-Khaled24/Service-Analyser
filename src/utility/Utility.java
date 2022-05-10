@@ -71,10 +71,20 @@ public class Utility {
                 else if(isObjectRow){
                     Field field = constructField(currentRow);                   // Construct Field object.
 
-                    // Store the objects in ArrayList for easy traverse without recursion.
-                    if(field instanceof ObjectField) {
+                    // Store the object in its belonged ArrayList for easy traverse without recursion.
+                    if(field instanceof ObjectField) {                          // If it is ObjectFiled it should be stored.
                         assert currentAPI != null;
-                        currentAPI.addToAllObject(field);
+                        if(field.getIo() == 'I')
+                            currentAPI.addRequestObject(field);
+                        else if(field.getIo() == 'O')
+                            currentAPI.addResponseObject(field);
+                    }
+                    else if(field instanceof StringField && field.getAncestors().isEmpty()){
+                        assert currentAPI != null;                              // If it is StringField and directChild to the API it should be stored.
+                        if(field.getIo() == 'I')
+                            currentAPI.addRequestObject(field);
+                        else if(field.getIo() == 'O')
+                            currentAPI.addResponseObject(field);
                     }
 
                     // Store the filed in its right position in the API.
