@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <GridPane alignment="CENTER" vgap="20" hgap="20.0" xmlns:fx="http://javafx.com/fxml"
           fx:controller="JAVAFX_Controllers.User_Input" fx:id="MainGridPane" id="MainGridPane"
-          stylesheets="@Style.css">
+          stylesheets="@../Style.css">
     <VBox spacing="20" alignment="CENTER">
         <Label text="Please Enter The Excel File Below">
             <font>
@@ -20,7 +20,7 @@
             </font>
         </Label>
         <HBox spacing="20" alignment="CENTER">
-            <TextField prefWidth="230" fx:id="InputField" onKeyReleased="#handleKeyReleased" editable="false"/>
+            <TextField prefWidth="230" fx:id="InputField"  editable="false"/>
             <Button fx:id="Browse_Button" text="Browse" prefWidth="100" onAction="#handleButtonClick"/>
         </HBox>
 
