@@ -28,8 +28,12 @@ public class Utility {
             return null;
         }
 
+        // Extract the Excel file name
+         String[] Extraction = filePath.split("\\\\");
+         filePath = Extraction[Extraction.length-1];
+
         // Initialize Service object
-        Service service = new Service("testService");
+        Service service = new Service(filePath);
 
         // Loop through Excel file sheets to construct the service object.
         int numberOfSheets = ExcelFile.getNumberOfSheets();
