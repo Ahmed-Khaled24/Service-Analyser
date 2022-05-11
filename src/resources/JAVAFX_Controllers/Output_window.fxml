@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="JAVAFX_Controllers.Output_Window"
+            >
+    <center>
+
+        <VBox>
+
+            <TextArea text="Request" editable="false" VBox.vgrow="ALWAYS" />
+            <TextArea text="Response" editable="false" VBox.vgrow="ALWAYS" />
+
+        </VBox>
+
+    </center>
+
+    <left>
+        <TextArea text="API LIST" editable="false" prefWidth="200"  />
+    </left>
+
+
+
+
+
+
+
+
+
+
+</BorderPane>

@@ -25,7 +25,7 @@
         </HBox>
 
         <HBox spacing="20">
-            <Button text="Submit" onAction="#handleButtonClick" prefWidth="105" fx:id="Submit_Button"/>
+            <Button text="Submit" onAction="#handleButtonClick"  prefWidth="105" fx:id="Submit_Button"/>
             <Button text="Clear" onAction="#handleButtonClick" prefWidth="105" fx:id="Clear_Button"/>
 
         </HBox>

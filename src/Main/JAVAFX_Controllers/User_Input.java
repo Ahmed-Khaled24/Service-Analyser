@@ -5,15 +5,20 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import utility.Utility;
 
 import java.io.File;
+import java.io.IOException;
 
-    public class User_Input {
+public class User_Input {
         @FXML
         private Button Browse_Button;
         @FXML
@@ -27,15 +32,14 @@ import java.io.File;
 
         private  String ExcelFile_Path;
 
-        public  String getExcelFile_Path() {
-            return ExcelFile_Path;
-        }
 
 
         public void initialize(){
             // When opening the program the buttons will be disabled to prevent a bug in the listener if statement
             Submit_Button.setDisable(true);
             Clear_Button.setDisable(true);
+
+
 
             InputField.textProperty().addListener(new ChangeListener<String>() {
                 @Override
@@ -46,6 +50,8 @@ import java.io.File;
                     Clear_Button.setDisable(DisableButton);
                 }
             });
+
+
 
         }
         @FXML
@@ -58,6 +64,40 @@ import java.io.File;
                 System.out.println(ExcelFile_Path);
                 Service s1 = Utility.constructService(filePath);
                 System.out.println("All Ok.");
+
+                // Create an output window when pressing on submit button
+                Stage dialog = new Stage();
+                FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Output_window.fxml"));
+                try {
+                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                    dialog.setScene(scene);
+                }catch (IOException h){
+                    System.out.println(h.getMessage());
+                }
+                dialog.setTitle("Output");
+                dialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
+
+                dialog.showAndWait();
+
+
+
+
+//                Dialog<ButtonType> dialog = new Dialog<>(); // Creates a new modal window
+//                dialog.initOwner(MainGridPane.getScene().getWindow());
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//                fxmlLoader.setLocation(getClass().getResource("Output_window.fxml"));
+//                try{// for the load catch io exception
+//                    dialog.getDialogPane().setContent(fxmlLoader.load());
+//
+//
+//                }catch (IOException f){
+//                    System.out.println(f.getMessage());
+//                    System.out.println("Couldn't load the dialog");
+//                    f.printStackTrace();
+//
+//                }
+//                dialog.showAndWait();
+
 
 
 
@@ -93,9 +133,8 @@ import java.io.File;
                     a.getCause();
                 }
             }
-
-
         }
+
 
     }
 
