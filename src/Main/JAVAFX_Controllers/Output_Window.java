@@ -1,13 +1,16 @@
 package JAVAFX_Controllers;
 
 import components.API;
+import components.Field;
+import components.ObjectField;
 import components.Service;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import utility.Utility;
+
+import java.util.ArrayList;
 
 public class Output_Window {
     @FXML
@@ -19,10 +22,11 @@ public class Output_Window {
 
     private  Service ReturnedService;
 
-    private ObservableList<API> Names;
+
 
 
     public void initialize(){
+
 
         ReturnedService = Utility.constructService(User_Input.filePath);
         assert ReturnedService != null;
@@ -37,6 +41,34 @@ public class Output_Window {
         API_NAMES.getSelectionModel().selectFirst();
 
 
+        ArrayList<Field> childrenFields = new ArrayList<>();
+        String[] tempo = new String[0];
+   for (int i=0 ; i<ReturnedService.getAPIs().size() ;i++){
+
+       for(int k=0 ; k<ReturnedService.getAPIs().get(i).getRequestObjects().size() ; k++){
+          Field temp = ReturnedService.getAPIs().get(i).getRequestObjects().get(k);
+
+          if(temp instanceof ObjectField){
+              childrenFields = ((ObjectField) temp).getChildrenFields();
+          }else{break;}
+
+          RequestArea.appendText(toTextArea(childrenFields,temp));
+
+//          for(int j=0 ; j<childrenFields.size() ; j++){
+//              int h=1;
+//              String temp2 = childrenFields.get(j).getName();
+//              tempo[h] = temp2;
+//
+//
+//
+//          }
+
+       }
+//       RequestArea.setText(namess.toString());
+//       System.out.println(namess.toString());
+   }
+
+
 
 
 
@@ -46,5 +78,15 @@ public class Output_Window {
 
     }
 
+    public String toTextArea(ArrayList<Field> childrenFields , Field requestObject){
+        String temp = requestObject.getName() + ": ";
+        for(int i=0 ; i<childrenFields.size() ; i++){
+            temp +=  childrenFields.get(i).getName() + "/";
+        }
+        temp += "\n";
+        return temp;
+    }
+
 
 }
+

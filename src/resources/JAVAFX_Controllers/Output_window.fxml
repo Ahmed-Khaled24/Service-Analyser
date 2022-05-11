@@ -14,7 +14,7 @@
 
         <VBox>
 
-            <TextArea text="Request" editable="false" VBox.vgrow="ALWAYS" fx:id="RequestArea" />
+            <TextArea  editable="false" VBox.vgrow="ALWAYS" fx:id="RequestArea" />
             <TextArea text="Response" editable="false" VBox.vgrow="ALWAYS" fx:id="ResponseArea"/>
 
         </VBox>
