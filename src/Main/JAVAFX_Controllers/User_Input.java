@@ -63,6 +63,7 @@ public class User_Input {
                 String filePath = ExcelFile_Path;
                 System.out.println(ExcelFile_Path);
                 Service s1 = Utility.constructService(filePath);
+
                 System.out.println("All Ok.");
 
                 // Create an output window when pressing on submit button
@@ -78,6 +79,7 @@ public class User_Input {
                 dialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
 
                 dialog.showAndWait();
+
 
 
 

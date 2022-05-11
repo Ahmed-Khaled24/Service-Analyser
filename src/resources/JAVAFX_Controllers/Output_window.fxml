@@ -14,15 +14,15 @@
 
         <VBox>
 
-            <TextArea text="Request" editable="false" VBox.vgrow="ALWAYS" />
-            <TextArea text="Response" editable="false" VBox.vgrow="ALWAYS" />
+            <TextArea text="Request" editable="false" VBox.vgrow="ALWAYS" fx:id="RequestArea" />
+            <TextArea text="Response" editable="false" VBox.vgrow="ALWAYS" fx:id="ResponseArea"/>
 
         </VBox>
 
     </center>
 
     <left>
-        <TextArea text="API LIST" editable="false" prefWidth="200"  />
+        <ListView fx:id="API_NAMES" />
     </left>
 
 
