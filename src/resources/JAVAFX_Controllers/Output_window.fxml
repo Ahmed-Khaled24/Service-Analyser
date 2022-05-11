@@ -22,15 +22,10 @@
     </center>
 
     <left>
-        <ListView fx:id="API_NAMES" />
+        <ListView fx:id="API_NAMES" >
+
+        </ListView>
     </left>
-
-
-
-
-
-
-
 
 
 

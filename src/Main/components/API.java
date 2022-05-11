@@ -90,4 +90,9 @@ public class API {
     public void addResponseObject(Field field){
         this.ResponseObjects.add(field);
     }
+
+    @Override
+    public String toString() {
+        return name ;
+    }
 }

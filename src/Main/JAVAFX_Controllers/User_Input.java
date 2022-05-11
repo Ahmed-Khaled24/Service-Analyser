@@ -32,6 +32,8 @@ public class User_Input {
 
         private  String ExcelFile_Path;
 
+        public static String filePath;
+
 
 
         public void initialize(){
@@ -60,25 +62,36 @@ public class User_Input {
                 System.out.println("Submit Pressed");
 
                 // Pass the Filepath from the fileChooser to the constructService method
-                String filePath = ExcelFile_Path;
+                filePath = ExcelFile_Path;
                 System.out.println(ExcelFile_Path);
                 Service s1 = Utility.constructService(filePath);
 
                 System.out.println("All Ok.");
 
+                // Extracting the file name to pass it as the title of the output window
+                String[] Extraction = filePath.split("\\\\");
+                String fileName = Extraction[Extraction.length-1];
+
                 // Create an output window when pressing on submit button
                 Stage dialog = new Stage();
-                FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Output_window.fxml"));
                 try {
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Output_window.fxml"));
                     Scene scene = new Scene(fxmlLoader.load(), 600, 400);
                     dialog.setScene(scene);
-                }catch (IOException h){
-                    System.out.println(h.getMessage());
-                }
-                dialog.setTitle("Output");
-                dialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
+                    dialog.setTitle(fileName);
+                    dialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
 
+
+                }catch (IOException h){
+                    h.printStackTrace();
+
+                }catch (Exception l){
+                    System.out.println(l.getMessage());
+                }
                 dialog.showAndWait();
+
+
 
 
 
