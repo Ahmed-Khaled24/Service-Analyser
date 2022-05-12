@@ -1,8 +1,25 @@
-.label{}
-.label{
-    -fx-font-family: "JetBrains Mono ExtraBold";
-    /*-fx-font-family: 'Lato';*/
-    /*src: url('Lato-Bold.ttf');*/
+/*.label{}*/
+/*.label{*/
+/*    -fx-font-family: ;*/
+/*    !*-fx-font-family: 'Lato';*!*/
+/*    !*src: url('Lato-Bold.ttf');*!*/
+/*}*/
 
 
+
+
+
+/*#MainGridPane{*/
+/* -fx-background-image: url(pexels-henry-&-co-1939485.jpg) ;*/
+/* !*-fx-background-repeat: fit; *!*/
+/* -fx-background-position: center ;*/
+/* -fx-background-color: beige;*/
+/* -fx-max-width: 600px;*/
+/* -fx-max-height: auto;*/
+/*}*/
+
+
+.TextArea{
+    -fx-font-family: Cambria;
+    -fx-font-size: 16px;
 }

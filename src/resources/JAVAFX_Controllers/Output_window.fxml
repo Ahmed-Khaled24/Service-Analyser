@@ -16,17 +16,22 @@
     <right>
 
         <VBox spacing="5">
-            <Label text="Components" fx:id="ComponentsLabel">
-                <padding>
-                    <Insets  left="5" top="5"/>
-                </padding>
-<!--                <font>-->
-<!--                    <Font name="lato-bold" size="16"/>-->
-<!--                </font>-->
-            </Label>
-            <TextArea  editable="false" VBox.vgrow="ALWAYS" fx:id="RequestArea" />
+<!--&lt;!&ndash;            <Label text="Components" fx:id="ComponentsLabel">&ndash;&gt;-->
+<!--&lt;!&ndash;                <padding>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <Insets  left="5" top="5"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </padding>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <font>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <Font name="lato-bold" size="16"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                </font>&ndash;&gt;&ndash;&gt;-->
+<!--            </Label>-->
+            <HBox>
+                <TextArea  editable="false" VBox.vgrow="ALWAYS" fx:id="RequestArea" />
+                <TextArea  editable="false" VBox.vgrow="ALWAYS"  />
+                <TextArea  editable="false" VBox.vgrow="ALWAYS"  />
+            </HBox>
 
         </VBox>
+
 
     </right>
 

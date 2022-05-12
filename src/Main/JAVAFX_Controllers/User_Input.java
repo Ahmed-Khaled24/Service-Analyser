@@ -8,8 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -33,10 +35,17 @@ public class User_Input {
         private  String ExcelFile_Path;
 
         public static String filePath;
+        @FXML
+        private Label test;
 
 
 
         public void initialize(){
+
+            Font font = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 24);
+
+            test.setFont(font);
+
             // When opening the program the buttons will be disabled to prevent a bug in the listener if statement
             Submit_Button.setDisable(true);
             Clear_Button.setDisable(true);

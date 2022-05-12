@@ -14,14 +14,15 @@
 
 
 <VBox spacing="20">
-        <Label alignment="CENTER" prefHeight="40.0" prefWidth="510.0" text="Please Enter The Excel File Below">
-            <font>
-                <Font name="JetBrains Mono" size="28" />
-            </font>
+        <Label alignment="CENTER" prefHeight="40.0" prefWidth="510.0" text="Please Enter The Excel File Below" fx:id="test" id="test"
+        >
+<!--            <font>-->
+<!--                <Font  name="Segoe UI" size="24" />-->
+<!--            </font>-->
         </Label>
 
-    <HBox spacing="10">
-        <TextField fx:id="InputField" editable="false" prefWidth="400" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <HBox spacing="10" alignment="CENTER">
+        <TextField fx:id="InputField" editable="false" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="1" />
         <Button fx:id="Browse_Button" onAction="#handleButtonClick" prefWidth="100" text="Browse" />
 
     </HBox>
