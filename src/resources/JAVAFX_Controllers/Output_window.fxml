@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="JAVAFX_Controllers.Output_Window"
@@ -14,11 +15,14 @@
             >
     <right>
 
-        <VBox>
-            <Label text="Children Fields">
-                <font>
-                    <Font name="Arial bold" size="16"/>
-                </font>
+        <VBox spacing="5">
+            <Label text="Components" fx:id="ComponentsLabel">
+                <padding>
+                    <Insets  left="5" top="5"/>
+                </padding>
+<!--                <font>-->
+<!--                    <Font name="lato-bold" size="16"/>-->
+<!--                </font>-->
             </Label>
             <TextArea  editable="false" VBox.vgrow="ALWAYS" fx:id="RequestArea" />
 
@@ -27,19 +31,25 @@
     </right>
 
     <center>
-        <VBox>
+        <VBox spacing="5">
             <Label text="Request  Objects">
-                <font>
-                    <Font name="Arial bold" size="16"/>
-                </font>
+                <padding>
+                    <Insets  left="5" top="5"/>
+                </padding>
+<!--                <font>-->
+<!--                    <Font name="Arial bold" size="16"/>-->
+<!--                </font>-->
             </Label>
             <ListView fx:id="RequestField_Names" >
 
             </ListView>
             <Label text="Response  Objects">
-                <font>
-                    <Font name="Arial bold" size="16"/>
-                </font>
+                <padding>
+                    <Insets  left="5" />
+                </padding>
+<!--                <font>-->
+<!--                    <Font name="Arial bold" size="16"/>-->
+<!--                </font>-->
             </Label>
             <ListView fx:id="ResponseField_Names" >
 
@@ -50,9 +60,21 @@
     </center>
 
     <left>
+        <VBox spacing="5">
+        <Label text="APIs ">
+            <padding>
+                <Insets  left="5" top="5"/>
+            </padding>
+<!--            <font>-->
+<!--                <Font name="Arial bold" size="16"/>-->
+<!--            </font>-->
+        </Label>
+
+
         <ListView fx:id="API_NAMES" >
 
         </ListView>
+        </VBox>
     </left>
 
 

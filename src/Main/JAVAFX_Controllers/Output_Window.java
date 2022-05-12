@@ -7,12 +7,14 @@ import components.Service;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import utility.Utility;
 
 import java.util.ArrayList;
+
 
 public class Output_Window {
     @FXML
@@ -28,6 +30,8 @@ public class Output_Window {
     private ListView<Field> RequestField_Names;
     @FXML
     private ListView<Field> ResponseField_Names;
+    @FXML
+    private Label ComponentsLabel;
 
 
 
@@ -36,6 +40,8 @@ public class Output_Window {
 
 
     public void initialize(){
+
+
 
 
         ReturnedService = Utility.constructService(User_Input.filePath);

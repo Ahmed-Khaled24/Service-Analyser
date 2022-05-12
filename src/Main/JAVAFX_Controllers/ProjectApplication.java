@@ -15,7 +15,7 @@ public class ProjectApplication extends Application {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("User_Input.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 500, 300);
+            Scene scene = new Scene(fxmlLoader.load(), 600, 250);
             stage.setTitle("User Input");
             stage.setScene(scene);
         } catch (Exception e) {

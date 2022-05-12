@@ -1,4 +1,8 @@
-.Label{}
-.Label{
-    -fx-background-color: dark grey;
+.label{}
+.label{
+    -fx-font-family: "JetBrains Mono ExtraBold";
+    /*-fx-font-family: 'Lato';*/
+    /*src: url('Lato-Bold.ttf');*/
+
+
 }
