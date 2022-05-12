@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import utility.Utility;
 
 import java.io.File;
@@ -42,9 +43,12 @@ public class User_Input {
 
         public void initialize(){
 
-            Font font = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 24);
+            Font LabelFont = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 24);
+            test.setFont(LabelFont);
 
-            test.setFont(font);
+
+
+
 
             // When opening the program the buttons will be disabled to prevent a bug in the listener if statement
             Submit_Button.setDisable(true);
@@ -86,9 +90,13 @@ public class User_Input {
                 try {
 
                     FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Output_window.fxml"));
-                    Scene scene = new Scene(fxmlLoader.load(), 1000, 500);
+                    Scene scene = new Scene(fxmlLoader.load(), 1500, 600);
                     dialog.setScene(scene);
                     dialog.setTitle(fileName);
+                    dialog.setMaximized(true);
+
+
+                    dialog.initStyle(StageStyle.DECORATED);
                     dialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
 
 

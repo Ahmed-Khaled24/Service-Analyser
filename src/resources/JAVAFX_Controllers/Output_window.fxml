@@ -15,68 +15,70 @@
             >
     <right>
 
-        <VBox spacing="5">
-<!--&lt;!&ndash;            <Label text="Components" fx:id="ComponentsLabel">&ndash;&gt;-->
-<!--&lt;!&ndash;                <padding>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <Insets  left="5" top="5"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                </padding>&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                <font>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <Font name="lato-bold" size="16"/>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                </font>&ndash;&gt;&ndash;&gt;-->
-<!--            </Label>-->
-            <HBox>
-                <TextArea  editable="false" VBox.vgrow="ALWAYS" fx:id="RequestArea" />
-                <TextArea  editable="false" VBox.vgrow="ALWAYS"  />
-                <TextArea  editable="false" VBox.vgrow="ALWAYS"  />
-            </HBox>
+        <VBox spacing="5" prefWidth="500">
+           <Label text="Components" fx:id="ComponentsLabel" VBox.vgrow="ALWAYS"
+                  style="-fx-border-color: Silver" >
+               <padding>
+                    <Insets  left="5" top="5" bottom="5"/>
+               </padding>
 
+            </Label>
+
+
+<!--                <TextArea  editable="false" VBox.vgrow="ALWAYS"  />-->
+<!--                <TextArea  editable="false" VBox.vgrow="ALWAYS"  />-->
+
+
+
+        <TextArea  editable="false" VBox.vgrow="ALWAYS" fx:id="TextArea"  />
         </VBox>
-
 
     </right>
 
+
+
+
     <center>
-        <VBox spacing="5">
-            <Label text="Request  Objects">
-                <padding>
-                    <Insets  left="5" top="5"/>
-                </padding>
-<!--                <font>-->
-<!--                    <Font name="Arial bold" size="16"/>-->
-<!--                </font>-->
-            </Label>
-            <ListView fx:id="RequestField_Names" >
+        <VBox prefWidth="500">
 
+            <Label text="Request  Objects" fx:id="RequestLabel"
+                   style="-fx-border-color: Silver" >
+                <padding>
+                    <Insets  left="5" top="5" bottom="5"/>
+                </padding>
+            </Label>
+
+            <ListView fx:id="RequestField_Names" VBox.vgrow="ALWAYS" prefWidth="500">
             </ListView>
-            <Label text="Response  Objects">
-                <padding>
-                    <Insets  left="5" />
-                </padding>
-<!--                <font>-->
-<!--                    <Font name="Arial bold" size="16"/>-->
-<!--                </font>-->
-            </Label>
-            <ListView fx:id="ResponseField_Names" >
 
+            <Label text="Response  Objects" fx:id="ResponseLabel"
+                   style="-fx-border-color: Silver" prefWidth="500">
+                <padding>
+                    <Insets  left="5" bottom="5" top="5"/>
+                </padding>
+
+            </Label>
+            <ListView fx:id="ResponseField_Names" VBox.vgrow="ALWAYS" >
             </ListView>
 
         </VBox>
 
     </center>
 
+
+
+
     <left>
-        <VBox spacing="5">
-        <Label text="APIs ">
+        <VBox prefWidth="500">
+        <Label text="APIs " fx:id="API_Label" style="-fx-border-color: Silver" prefWidth="500">
             <padding>
-                <Insets  left="5" top="5"/>
+                <Insets  left="5" top="5" bottom="5"/>
             </padding>
-<!--            <font>-->
-<!--                <Font name="Arial bold" size="16"/>-->
-<!--            </font>-->
+
         </Label>
 
 
-        <ListView fx:id="API_NAMES" >
+        <ListView fx:id="API_NAMES"  VBox.vgrow="ALWAYS" prefWidth="500"  >
 
         </ListView>
         </VBox>

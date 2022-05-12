@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Font;
 import utility.Utility;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class Output_Window {
     @FXML
-    private TextArea RequestArea;
+    private TextArea TextArea;
     @FXML
     private TextArea ResponseArea;
     @FXML
@@ -32,6 +33,16 @@ public class Output_Window {
     private ListView<Field> ResponseField_Names;
     @FXML
     private Label ComponentsLabel;
+    @FXML
+    private Label RequestLabel;
+
+
+    @FXML
+    private Label ResponseLabel;
+
+    @FXML
+    private Label API_Label;
+
 
 
 
@@ -41,6 +52,24 @@ public class Output_Window {
 
     public void initialize(){
 
+        Font LabelFont = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 24);
+        ComponentsLabel.setFont(LabelFont);
+        RequestLabel.setFont(LabelFont);
+        ResponseLabel.setFont(LabelFont);
+        API_Label.setFont(LabelFont);
+
+
+
+        Font textFont = Font.loadFont(getClass().getResourceAsStream("Lora-Regular.ttf"), 14);
+        TextArea.setStyle("-fx-font-family: 'Cambria';-fx-font-size: 18px ");
+
+        RequestField_Names.setStyle("-fx-font-family: 'Cambria';-fx-font-size: 16px ");
+
+
+
+        Font.loadFont(ProjectApplication.class.getResource("Lato-Bold.ttf").toExternalForm(), 10);
+        ResponseField_Names.setStyle("-fx-font-family: 'Cambria'; -fx-font-size: 16");
+        API_NAMES.setStyle("-fx-font-family: 'Cambria'; -fx-font-size: 16px");
 
 
 
@@ -106,7 +135,7 @@ public class Output_Window {
        public void changed(ObservableValue<? extends Field> observableValue, Field field, Field t1) {
            if(t1 != null){
                Field item = RequestField_Names.getSelectionModel().getSelectedItem();
-               RequestArea.setText(NewTextArea(item));
+               TextArea.setText(NewTextArea(item));
 
            }
        }
@@ -117,7 +146,7 @@ public class Output_Window {
                 public void changed(ObservableValue<? extends Field> observableValue, Field field, Field t1) {
                     if (t1 != null){
                         Field item = ResponseField_Names.getSelectionModel().getSelectedItem();
-                        RequestArea.setText(NewTextArea(item));
+                        TextArea.setText(NewTextArea(item));
                     }
                 }
             });
