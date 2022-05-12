@@ -6,16 +6,44 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.text.Font?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="JAVAFX_Controllers.Output_Window"
+            stylesheets="/Style.css"
             >
-    <center>
+    <right>
 
         <VBox>
-
+            <Label text="Children Fields">
+                <font>
+                    <Font name="Arial bold" size="16"/>
+                </font>
+            </Label>
             <TextArea  editable="false" VBox.vgrow="ALWAYS" fx:id="RequestArea" />
-            <TextArea text="Response" editable="false" VBox.vgrow="ALWAYS" fx:id="ResponseArea"/>
+
+        </VBox>
+
+    </right>
+
+    <center>
+        <VBox>
+            <Label text="Request  Objects">
+                <font>
+                    <Font name="Arial bold" size="16"/>
+                </font>
+            </Label>
+            <ListView fx:id="RequestField_Names" >
+
+            </ListView>
+            <Label text="Response  Objects">
+                <font>
+                    <Font name="Arial bold" size="16"/>
+                </font>
+            </Label>
+            <ListView fx:id="ResponseField_Names" >
+
+            </ListView>
 
         </VBox>
 

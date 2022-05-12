@@ -77,7 +77,7 @@ public class User_Input {
                 try {
 
                     FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Output_window.fxml"));
-                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                    Scene scene = new Scene(fxmlLoader.load(), 1000, 500);
                     dialog.setScene(scene);
                     dialog.setTitle(fileName);
                     dialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
