@@ -131,7 +131,7 @@ public class Utility {
         XSSFCell URLCell = propertiesRow.getCell(URL_INDEX);
 
         // Extract the data from the cells into strings.
-        String name = nameCell.toString();
+        String name = nameCell.toString().replace("REST Operation Mapping" , "");
         String operation = operationCell.toString();
         String URL = URLCell.toString();
 
