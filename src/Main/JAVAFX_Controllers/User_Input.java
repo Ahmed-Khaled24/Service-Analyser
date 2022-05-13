@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -48,23 +47,6 @@ public class User_Input {
     //------------------------------------------------Initialization-----------------------------------------//
     public void initialize() {
 
-        // Set icons for browse button
-        ImageView BrowseView = new ImageView(new Image("Browser.png"));
-        BrowseView.setFitHeight(18);
-        BrowseView.setFitWidth(18);
-        Browse_Button.setGraphic(BrowseView);
-
-        // Set icons for clear button
-        ImageView ClearView = new ImageView(new Image("eraser.png"));
-        ClearView.setFitHeight(18);
-        ClearView.setFitWidth(18);
-        Clear_Button.setGraphic(ClearView);
-
-        // Set icons for submit button
-        ImageView SubmitView = new ImageView(new Image("sub.png"));
-        SubmitView.setFitHeight(15);
-        SubmitView.setFitWidth(15);
-        Submit_Button.setGraphic(SubmitView);
 
         // Setting the imported font here because it doesn't work properly in the CSS stylesheet
         Font LabelFont = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 24);

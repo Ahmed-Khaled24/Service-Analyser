@@ -4,7 +4,5 @@ out/
 *.iml
 *.ipr
 *.iws
-
-
 /src/Main/META-INF/
 /src/Main/JAVAFX_Controllers/META-INF/

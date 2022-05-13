@@ -68,11 +68,15 @@ public class Output_Window {
         API_NAMES.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
 
+
         API_NAMES.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<API>() {
             @Override
             public void changed(ObservableValue<? extends API> observableValue, API api, API t1) {
                 if (t1 != null) {
                     API selectedAPI = API_NAMES.getSelectionModel().getSelectedItem();
+                    FieldName_Area.clear();
+                    AllowedValues_Area.clear();
+                    Mandatory_Area.clear();
                     populateRequestObjects(selectedAPI);
                     populateResponseObjects(selectedAPI);
                 }

@@ -21,9 +21,6 @@ public class ProjectApplication extends Application {
             stage.setMaxHeight(333);
             stage.setMinWidth(500);
             stage.setMinHeight(200);
-
-
-
             stage.setTitle("User Input");
             stage.setScene(scene);
         } catch (Exception e) {
@@ -34,6 +31,7 @@ public class ProjectApplication extends Application {
         stage.show();
 
     }
+
     public static void main(String[] args) {
         launch();
     }
