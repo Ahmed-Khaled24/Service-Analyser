@@ -17,7 +17,7 @@
 
 
         <VBox>
-            <Label text="Components" fx:id="ComponentsLabel" prefWidth="1050">
+            <Label text="Components" fx:id="ComponentsLabel" prefWidth="900">
                 <padding>
                     <Insets left="5" top="5" bottom="5"/>
                 </padding>
@@ -28,9 +28,9 @@
 
             <HBox VBox.vgrow="ALWAYS">
 
-                <TextArea editable="false" fx:id="FieldName_Area" VBox.vgrow="ALWAYS" prefWidth="350"/>
-                <TextArea fx:id="AllowedValues_Area" editable="false" VBox.vgrow="ALWAYS" prefWidth="350"/>
-                <TextArea fx:id="Mandatory_Area" editable="false" VBox.vgrow="ALWAYS" prefWidth="350"/>
+                <TextArea editable="false" fx:id="FieldName_Area" VBox.vgrow="ALWAYS" prefWidth="300"/>
+                <TextArea fx:id="AllowedValues_Area" editable="false" VBox.vgrow="ALWAYS" prefWidth="300"/>
+                <TextArea fx:id="Mandatory_Area" editable="false" VBox.vgrow="ALWAYS" prefWidth="300"/>
             </HBox>
         </VBox>
 
@@ -40,23 +40,22 @@
     <center>
         <VBox>
 
-            <Label text="Request  Objects" fx:id="RequestLabel" prefWidth="500">
+            <Label text="Request  Objects" fx:id="RequestLabel" prefWidth="1000">
                 <padding>
                     <Insets left="5" top="5" bottom="5"/>
                 </padding>
             </Label>
 
-            <ListView fx:id="RequestField_Names" VBox.vgrow="ALWAYS" prefWidth="500" maxWidth="500">
+            <ListView fx:id="RequestField_Names" VBox.vgrow="ALWAYS"  >
             </ListView>
 
-            <Label text="Response  Objects" fx:id="ResponseLabel"
-                   maxWidth="500">
+            <Label text="Response  Objects" fx:id="ResponseLabel" prefWidth="1000">
                 <padding>
                     <Insets left="5" bottom="5" top="5"/>
                 </padding>
 
             </Label>
-            <ListView fx:id="ResponseField_Names" VBox.vgrow="ALWAYS" prefWidth="500">
+            <ListView fx:id="ResponseField_Names" VBox.vgrow="ALWAYS" >
             </ListView>
 
         </VBox>
@@ -66,7 +65,7 @@
 
     <left>
         <VBox>
-            <Label text="APIs " fx:id="API_Label" prefWidth="400">
+            <Label text="APIs " fx:id="API_Label" prefWidth="300">
                 <padding>
                     <Insets left="5" top="5" bottom="5"/>
                 </padding>
@@ -74,7 +73,7 @@
             </Label>
 
 
-            <ListView fx:id="API_NAMES" VBox.vgrow="ALWAYS" prefWidth="400">
+            <ListView fx:id="API_NAMES" VBox.vgrow="ALWAYS" >
 
             </ListView>
         </VBox>
