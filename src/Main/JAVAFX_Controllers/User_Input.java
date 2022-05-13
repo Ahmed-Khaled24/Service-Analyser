@@ -95,7 +95,10 @@ public class User_Input {
                     Scene scene = new Scene(fxmlLoader.load(), 1850, 700);
                     dialog.setScene(scene);
                     dialog.setTitle(fileName);
+                    dialog.setMinWidth(1850);
+                    dialog.setMinHeight(700);
                     dialog.setMaximized(true);
+
 
 
                     dialog.initStyle(StageStyle.DECORATED);

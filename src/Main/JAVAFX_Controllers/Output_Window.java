@@ -185,11 +185,12 @@ public class Output_Window {
    // This function Stores the Components into a string to be shown on the textArea
     public String toTextArea(Field field ){
 
-        String FieldNames = null , AllowedValues=null,Mandatory=null;
+
         ArrayList<Field> childrenFields;
         String result =null;
 
          if(field instanceof ObjectField){
+             String FieldNames = null , AllowedValues=null,Mandatory=null;
 
             childrenFields = ((ObjectField) field).getChildrenFields();
 
@@ -204,9 +205,12 @@ public class Output_Window {
                  AllowedValues += " Allowed Values: " +AllowedValues_print(childrenFields.get(i).getAllowedValues()) +"\n" ;
                  Mandatory +=  " isMandatory " +Mandatory_Convert(childrenFields.get(i).isMandatory()) + "\n" ;
              }
+
+             result = FieldNames + "//" + AllowedValues + "//" + Mandatory ;
          }
 
-         result = FieldNames + "//" + AllowedValues + "//" + Mandatory ;
+
+
 
          return result;
         }
@@ -215,13 +219,19 @@ public class Output_Window {
         // This function shows the stored String on the three text Areas
         private void populateAllTextAreas(Field SelectedItem){
             String AllText = toTextArea(SelectedItem);
-            // to split the string into the three text Areas
-            String[] Extraction = AllText.split("//");
+            if(AllText != null) {
+                // to split the string into the three text Areas
+                String[] Extraction = AllText.split("//");
 
-            FieldName_Area.setText(Extraction[Extraction.length-3]);
-            AllowedValues_Area.setText(Extraction[Extraction.length-2]);
-            Mandatory_Area.setText(Extraction[Extraction.length-1]);
+                FieldName_Area.setText(Extraction[Extraction.length - 3]);
+                AllowedValues_Area.setText(Extraction[Extraction.length - 2]);
+                Mandatory_Area.setText(Extraction[Extraction.length - 1]);
 
+            }else {
+                FieldName_Area.clear();
+                AllowedValues_Area.clear();
+                Mandatory_Area.clear();
+            }
 
         }
 
