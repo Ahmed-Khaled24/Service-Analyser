@@ -11,13 +11,14 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="JAVAFX_Controllers.Output_Window"
-            stylesheets="/Style.css"
+            stylesheets="/Style.css" id="OutPutBorderPane"
             >
     <right>
 
-        <VBox spacing="5" prefWidth="500">
-           <Label text="Components" fx:id="ComponentsLabel" VBox.vgrow="ALWAYS"
-                  style="-fx-border-color: Silver" >
+
+        <VBox  >
+           <Label text="Components" fx:id="ComponentsLabel"
+                    >
                <padding>
                     <Insets  left="5" top="5" bottom="5"/>
                </padding>
@@ -28,9 +29,12 @@
 <!--                <TextArea  editable="false" VBox.vgrow="ALWAYS"  />-->
 <!--                <TextArea  editable="false" VBox.vgrow="ALWAYS"  />-->
 
+            <HBox  VBox.vgrow="ALWAYS">
 
-
-        <TextArea  editable="false" VBox.vgrow="ALWAYS" fx:id="TextArea"  />
+        <TextArea editable="false" fx:id="FieldName_Area" VBox.vgrow="ALWAYS" prefWidth="200" />
+                <TextArea  fx:id="AllowedValues_Area" editable="false"  VBox.vgrow="ALWAYS"  prefWidth="200" />
+                <TextArea  fx:id="Mandatory_Area" editable="false" VBox.vgrow="ALWAYS"  prefWidth="200" />
+        </HBox>
         </VBox>
 
     </right>
@@ -39,26 +43,25 @@
 
 
     <center>
-        <VBox prefWidth="500">
+        <VBox>
 
-            <Label text="Request  Objects" fx:id="RequestLabel"
-                   style="-fx-border-color: Silver" >
+            <Label text="Request  Objects" fx:id="RequestLabel" prefWidth="500">
                 <padding>
                     <Insets  left="5" top="5" bottom="5"/>
                 </padding>
             </Label>
 
-            <ListView fx:id="RequestField_Names" VBox.vgrow="ALWAYS" prefWidth="500">
+            <ListView fx:id="RequestField_Names" VBox.vgrow="ALWAYS" prefWidth="500" >
             </ListView>
 
             <Label text="Response  Objects" fx:id="ResponseLabel"
-                   style="-fx-border-color: Silver" prefWidth="500">
+                   maxWidth="500" >
                 <padding>
                     <Insets  left="5" bottom="5" top="5"/>
                 </padding>
 
             </Label>
-            <ListView fx:id="ResponseField_Names" VBox.vgrow="ALWAYS" >
+            <ListView fx:id="ResponseField_Names" VBox.vgrow="ALWAYS" prefWidth="500" >
             </ListView>
 
         </VBox>
@@ -69,8 +72,8 @@
 
 
     <left>
-        <VBox prefWidth="500">
-        <Label text="APIs " fx:id="API_Label" style="-fx-border-color: Silver" prefWidth="500">
+        <VBox >
+        <Label text="APIs " fx:id="API_Label" >
             <padding>
                 <Insets  left="5" top="5" bottom="5"/>
             </padding>

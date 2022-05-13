@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane id="MainGridPane" fx:id="MainGridPane" alignment="CENTER" hgap="20" stylesheets="/Style.css" vgap="20"
+<GridPane id="MainGridPane" fx:id="MainGridPane" alignment="CENTER" hgap="20"  vgap="20"
           xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="JAVAFX_Controllers.User_Input">
 
 

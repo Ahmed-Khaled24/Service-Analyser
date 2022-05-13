@@ -5,7 +5,10 @@
 /*    !*src: url('Lato-Bold.ttf');*!*/
 /*}*/
 
-
+@font-face {
+    font-family: Lora;
+    src: url('Lora-Regular.ttf');
+}
 
 
 
@@ -17,5 +20,33 @@
 /* -fx-max-width: 600px;*/
 /* -fx-max-height: auto;*/
 /*}*/
+
+.label{}
+.label{
+
+    -fx-border-width: 5;
+    -fx-border-color: silver;
+
+
+}
+.list-view{}
+.list-view{
+    -fx-font-family: Cambria ;
+    -fx-font-size: 16px;
+    -fx-border-color: silver;
+    -fx-border-width: 5;
+}
+
+.text-area{}
+.text-area{
+    -fx-font-family: Cambria ;
+    -fx-font-size: 18px;
+}
+
+#OutPutBorderPane{
+    -fx-border-color: silver;
+    -fx-border-width: 5;
+
+}
 
 

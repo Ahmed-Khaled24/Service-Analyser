@@ -19,9 +19,11 @@ import java.util.ArrayList;
 
 public class Output_Window {
     @FXML
-    private TextArea TextArea;
+    private TextArea FieldName_Area;
     @FXML
-    private TextArea ResponseArea;
+    private TextArea AllowedValues_Area;
+    @FXML
+    private TextArea Mandatory_Area
     @FXML
     private ListView<API> API_NAMES;
 
@@ -50,8 +52,9 @@ public class Output_Window {
 
 
 
-    public void initialize(){
 
+    public void initialize(){
+        // Setting the Label fonts here because importing the font doesnt work in css stylesheet
         Font LabelFont = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 24);
         ComponentsLabel.setFont(LabelFont);
         RequestLabel.setFont(LabelFont);
@@ -60,16 +63,16 @@ public class Output_Window {
 
 
 
-        Font textFont = Font.loadFont(getClass().getResourceAsStream("Lora-Regular.ttf"), 14);
-        TextArea.setStyle("-fx-font-family: 'Cambria';-fx-font-size: 18px ");
-
-        RequestField_Names.setStyle("-fx-font-family: 'Cambria';-fx-font-size: 16px ");
-
-
-
-        Font.loadFont(ProjectApplication.class.getResource("Lato-Bold.ttf").toExternalForm(), 10);
-        ResponseField_Names.setStyle("-fx-font-family: 'Cambria'; -fx-font-size: 16");
-        API_NAMES.setStyle("-fx-font-family: 'Cambria'; -fx-font-size: 16px");
+//        Font textFont = Font.loadFont(getClass().getResourceAsStream("Lora-Regular.ttf"), 14);
+//        TextArea.setStyle("-fx-font-family: 'Cambria';-fx-font-size: 18px ");
+//
+//        RequestField_Names.setStyle("-fx-font-family: 'Cambria';-fx-font-size: 16px ");
+//
+//
+//
+//        Font.loadFont(ProjectApplication.class.getResource("Lato-Bold.ttf").toExternalForm(), 10);
+//        ResponseField_Names.setStyle("-fx-font-family: 'Cambria'; -fx-font-size: 16px");
+//        API_NAMES.setStyle("-fx-font-family: 'Cambria'; -fx-font-size: 16px");
 
 
 
@@ -135,7 +138,7 @@ public class Output_Window {
        public void changed(ObservableValue<? extends Field> observableValue, Field field, Field t1) {
            if(t1 != null){
                Field item = RequestField_Names.getSelectionModel().getSelectedItem();
-               TextArea.setText(NewTextArea(item));
+               FieldName_Area.setText(NewTextArea(item));
 
            }
        }
@@ -146,7 +149,7 @@ public class Output_Window {
                 public void changed(ObservableValue<? extends Field> observableValue, Field field, Field t1) {
                     if (t1 != null){
                         Field item = ResponseField_Names.getSelectionModel().getSelectedItem();
-                        TextArea.setText(NewTextArea(item));
+                        FieldName_Area.setText(NewTextArea(item));
                     }
                 }
             });
@@ -177,26 +180,44 @@ public class Output_Window {
 
 
 
-    public String toTextArea(ArrayList<Field> childrenFields ){
-//        String temp = requestObject.getName() + ": ";
-        String temp = childrenFields.get(0).getName() + "\t\t"+ " Allowed Values: " + childrenFields.get(0).getAllowedValues().toString()  + "\t\t"
-                + " isMandatory " +childrenFields.get(0).isMandatory() + "\n" ;
-        for(int i=1 ; i<childrenFields.size() ; i++){
-            temp += childrenFields.get(i).getName() + "\t\t"+ " Allowed Values: " + childrenFields.get(i).getAllowedValues().toString() + "\t\t"
-                    + " isMandatory " +childrenFields.get(i).isMandatory() +"\n";
-        }
-        return temp;
-    }
+    public String toTextArea(Field field ){
 
-    public String NewTextArea(Field field){
-        String result = null;
-        ArrayList<Field> temp;
-        if(field instanceof ObjectField){
-            temp = ((ObjectField) field).getChildrenFields();
-            result = toTextArea(temp);
+        String temp = null;
+        ArrayList<Field> childrenFields;
+
+         if(field instanceof ObjectField){
+
+            childrenFields = ((ObjectField) field).getChildrenFields();
+
+              temp = childrenFields.get(0).getName() + "\t\t"+ " Allowed Values: " + childrenFields.get(0).getAllowedValues().toString()  + "\t\t"
+                     + " isMandatory " +childrenFields.get(0).isMandatory() + "\n" ;
+             for(int i=1 ; i<childrenFields.size() ; i++){
+                 temp += childrenFields.get(i).getName() + "\t\t"+ " Allowed Values: " + childrenFields.get(i).getAllowedValues().toString() + "\t\t"
+                         + " isMandatory " +childrenFields.get(i).isMandatory() +"\n";
+             }
+         }
+        return temp;
         }
-        return result;
-    }
+
+
+
+
+//        String temp = requestObject.getName() + ": ";
+
+
+
+
+
+
+//    public String NewTextArea(Field field){
+//        String result = null;
+//        ArrayList<Field> temp;
+//        if(field instanceof ObjectField){
+//            temp = ((ObjectField) field).getChildrenFields();
+//            result = toTextArea(temp);
+//        }
+//        return result;
+//    }
 
 
 }
