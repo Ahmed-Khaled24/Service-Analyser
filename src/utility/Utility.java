@@ -101,8 +101,12 @@ public class Utility {
 */
         FileInputStream inputFile;
         try {
+
             inputFile = new FileInputStream(FilePath);
-            return new XSSFWorkbook(inputFile);
+            XSSFWorkbook ExcelObject = new XSSFWorkbook(inputFile);
+            inputFile.close();
+            return ExcelObject;
+
         } catch (FileNotFoundException e) {
             throw new IOException("File not found.");
         }
