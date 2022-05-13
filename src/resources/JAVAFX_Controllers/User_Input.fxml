@@ -10,16 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane id="MainGridPane" fx:id="MainGridPane" alignment="CENTER" hgap="20"  vgap="20" style="-fx-border-color: black; -fx-background-color: silver"
+<GridPane id="MainGridPane" fx:id="MainGridPane" alignment="CENTER" hgap="20"  vgap="20" style="-fx-border-color: silver"
           xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="JAVAFX_Controllers.User_Input">
 
 
 <VBox spacing="20">
-        <Label alignment="CENTER" prefHeight="40.0" prefWidth="510.0" text="Please Enter The Excel File Below" fx:id="test" id="test"
-        >
-<!--            <font>-->
-<!--                <Font  name="Segoe UI" size="24" />-->
-<!--            </font>-->
+        <Label alignment="CENTER" prefHeight="40.0" prefWidth="510.0" text="Please Enter The Excel File Below" fx:id="test" id="test">
+
         </Label>
 
 
@@ -37,13 +34,7 @@
             </HBox>
 
 
-<!--    <BorderPane>-->
-<!--        <bottom>-->
-<!--            <Button text="Submit" onAction="#handleButtonClick"  prefWidth="105" fx:id="Submit_Button" alignment="CENTER"-->
-<!--                    BorderPane.alignment="BOTTOM_RIGHT"/>-->
-<!--        </bottom>-->
 
-<!--    </BorderPane>-->
 
 </VBox>
 

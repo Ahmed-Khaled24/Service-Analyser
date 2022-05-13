@@ -21,12 +21,15 @@ public class ProjectApplication extends Application {
             stage.setMinWidth(500);
             stage.setMinHeight(200);
 
+
+
             stage.setTitle("User Input");
             stage.setScene(scene);
         } catch (Exception e) {
-            e.getCause();
+
             System.out.println(e.getMessage());
         }
+
         stage.show();
 
     }

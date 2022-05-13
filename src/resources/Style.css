@@ -6,18 +6,6 @@
 /*}*/
 
 
-
-
-
-/*#MainGridPane{*/
-/* -fx-background-image: url(pexels-henry-&-co-1939485.jpg) ;*/
-/* !*-fx-background-repeat: fit; *!*/
-/* -fx-background-position: center ;*/
-/* -fx-background-color: beige;*/
-/* -fx-max-width: 600px;*/
-/* -fx-max-height: auto;*/
-/*}*/
-
 .label{}
 .label{
 
@@ -40,10 +28,7 @@
     -fx-font-size: 18px;
 }
 
-#OutPutBorderPane{
-    -fx-border-color: silver;
 
 
-}
 
 

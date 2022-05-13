@@ -10,9 +10,9 @@
 <VBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="JAVAFX_Controllers.Error_Dialog"
-            fx:id="Error_Pane" alignment="CENTER" spacing="20">
+            fx:id="Error_Pane" alignment="CENTER" spacing="20" id="Error_Pane">
 
-        <Label text="Dataset not found" fx:id="Error_Label" alignment="CENTER" />
+        <Label text="API data not found" fx:id="Error_Label" alignment="CENTER" id="ErrorLabel"/>
 
 
         <Button fx:id="Close_Button" text="Close" prefWidth="105" onAction="#OnButtonClicked"
