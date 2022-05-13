@@ -71,4 +71,9 @@ public class Field {
     public void setAncestors(ArrayList<String> ancestors) {
         this.ancestors = ancestors;
     }
+
+    @Override
+    public String toString() {
+        return  name ;
+    }
 }

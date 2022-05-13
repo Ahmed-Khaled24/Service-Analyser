@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="JAVAFX_Controllers.Output_Window"
+            stylesheets="/Style.css" id="OutPutBorderPane"
+>
+    <right>
+
+
+        <VBox>
+            <Label text="Components" fx:id="ComponentsLabel" prefWidth="900">
+                <padding>
+                    <Insets left="5" top="5" bottom="5"/>
+                </padding>
+
+            </Label>
+
+
+
+            <HBox VBox.vgrow="ALWAYS">
+
+                <TextArea editable="false" fx:id="FieldName_Area" VBox.vgrow="ALWAYS" prefWidth="300"/>
+                <TextArea fx:id="AllowedValues_Area" editable="false" VBox.vgrow="ALWAYS" prefWidth="300"/>
+                <TextArea fx:id="Mandatory_Area" editable="false" VBox.vgrow="ALWAYS" prefWidth="300"/>
+            </HBox>
+        </VBox>
+
+    </right>
+
+
+    <center>
+        <VBox>
+
+            <Label text="Request  Objects" fx:id="RequestLabel" prefWidth="1000">
+                <padding>
+                    <Insets left="5" top="5" bottom="5"/>
+                </padding>
+            </Label>
+
+            <ListView fx:id="RequestField_Names" VBox.vgrow="ALWAYS"  >
+            </ListView>
+
+            <Label text="Response  Objects" fx:id="ResponseLabel" prefWidth="1000">
+                <padding>
+                    <Insets left="5" bottom="5" top="5"/>
+                </padding>
+
+            </Label>
+            <ListView fx:id="ResponseField_Names" VBox.vgrow="ALWAYS" >
+            </ListView>
+
+        </VBox>
+
+    </center>
+
+
+    <left>
+        <VBox>
+            <Label text="APIs " fx:id="API_Label" prefWidth="300">
+                <padding>
+                    <Insets left="5" top="5" bottom="5"/>
+                </padding>
+
+            </Label>
+
+
+            <ListView fx:id="API_NAMES" VBox.vgrow="ALWAYS" >
+
+            </ListView>
+        </VBox>
+    </left>
+
+
+</BorderPane>
