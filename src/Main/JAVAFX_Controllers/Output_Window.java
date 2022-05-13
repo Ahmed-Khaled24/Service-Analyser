@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 
 public class Output_Window {
+
     @FXML
     private TextArea FieldName_Area;
     @FXML
@@ -223,27 +224,6 @@ public class Output_Window {
 
 
         }
-
-
-
-
-//        String temp = requestObject.getName() + ": ";
-
-
-
-
-
-
-//    public String NewTextArea(Field field){
-//        String result = null;
-//        ArrayList<Field> temp;
-//        if(field instanceof ObjectField){
-//            temp = ((ObjectField) field).getChildrenFields();
-//            result = toTextArea(temp);
-//        }
-//        return result;
-//    }
-
 
 }
 

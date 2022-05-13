@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
@@ -96,7 +98,6 @@ public class User_Input {
                     dialog.setMaximized(true);
 
 
-
                     dialog.initStyle(StageStyle.DECORATED);
                     dialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
 
@@ -107,6 +108,12 @@ public class User_Input {
                 }catch (Exception l){
                     System.out.println(l.getMessage());
                 }
+                //press F1 to access Fullscreen
+                dialog.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+                    if (KeyCode.F1.equals(event.getCode())) {
+                        dialog.setFullScreen(!dialog.isFullScreen());
+                    }
+                });
                 dialog.showAndWait();
 
 
