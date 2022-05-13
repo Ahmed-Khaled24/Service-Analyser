@@ -81,43 +81,49 @@ public class User_Input {
                 System.out.println(ExcelFile_Path);
                 Service s1 = Utility.constructService(filePath);
 
+
+
+                    // Extracting the file name to pass it as the title of the output window
+            String[] Extraction = filePath.split("\\\\");
+            String fileName = Extraction[Extraction.length-1];
+
+            // Create an output window when pressing on submit button
+            Stage dialog = new Stage();
+            try {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Output_window.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 1850, 700);
+                dialog.setScene(scene);
+                dialog.setTitle(fileName);
+                dialog.setMinWidth(1850);
+                dialog.setMinHeight(700);
+                dialog.setMaximized(true);
+
+
+
+                dialog.initStyle(StageStyle.DECORATED);
+                dialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
+
+
+            }catch (IOException h){
+                h.printStackTrace();
+
+            }catch (Exception l){
+                System.out.println(l.getMessage());
+            }
+            // Press F1 to toggle Fullscreen
+            dialog.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+                if (KeyCode.F1.equals(event.getCode())) {
+                    dialog.setFullScreen(!dialog.isFullScreen());
+                }
+            });
+            dialog.showAndWait();
+
+
+
+
                 System.out.println("All Ok.");
 
-                // Extracting the file name to pass it as the title of the output window
-                String[] Extraction = filePath.split("\\\\");
-                String fileName = Extraction[Extraction.length-1];
-
-                // Create an output window when pressing on submit button
-                Stage dialog = new Stage();
-                try {
-
-                    FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Output_window.fxml"));
-                    Scene scene = new Scene(fxmlLoader.load(), 1850, 700);
-                    dialog.setScene(scene);
-                    dialog.setTitle(fileName);
-                    dialog.setMinWidth(1850);
-                    dialog.setMinHeight(700);
-                    dialog.setMaximized(true);
-
-
-
-                    dialog.initStyle(StageStyle.DECORATED);
-                    dialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
-
-
-                }catch (IOException h){
-                    h.printStackTrace();
-
-                }catch (Exception l){
-                    System.out.println(l.getMessage());
-                }
-                //press F1 to access Fullscreen
-                dialog.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-                    if (KeyCode.F1.equals(event.getCode())) {
-                        dialog.setFullScreen(!dialog.isFullScreen());
-                    }
-                });
-                dialog.showAndWait();
 
 
 
@@ -177,6 +183,70 @@ public class User_Input {
                 }
             }
         }
+
+//        private void ShowOutputStage(){
+//            // Extracting the file name to pass it as the title of the output window
+//            String[] Extraction = filePath.split("\\\\");
+//            String fileName = Extraction[Extraction.length-1];
+//
+//            // Create an output window when pressing on submit button
+//            Stage dialog = new Stage();
+//            try {
+//
+//                FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Output_window.fxml"));
+//                Scene scene = new Scene(fxmlLoader.load(), 1850, 700);
+//                dialog.setScene(scene);
+//                dialog.setTitle(fileName);
+//                dialog.setMinWidth(1850);
+//                dialog.setMinHeight(700);
+//                dialog.setMaximized(true);
+//
+//
+//
+//                dialog.initStyle(StageStyle.DECORATED);
+//                dialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
+//
+//
+//            }catch (IOException h){
+//                h.printStackTrace();
+//
+//            }catch (Exception l){
+//                System.out.println(l.getMessage());
+//            }
+//            // Press F1 to toggle Fullscreen
+//            dialog.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+//                if (KeyCode.F1.equals(event.getCode())) {
+//                    dialog.setFullScreen(!dialog.isFullScreen());
+//                }
+//            });
+//            dialog.showAndWait();
+//
+//        }
+//
+//        private void ShowErrorDialog() {
+//
+//
+//
+//
+//            Stage ErrorDialog = new Stage();
+//
+//
+//            try {
+//                FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Error_Dialog.fxml"));
+//                Scene scene = new Scene(fxmlLoader.load(), 1850, 700);
+//                ErrorDialog.setScene(scene);
+//                ErrorDialog.setTitle("Error");
+//                ErrorDialog.setResizable(false);
+//                ErrorDialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
+//
+//
+//            } catch (IOException e) {
+//                System.out.println(e.getMessage());
+//            }
+//            ErrorDialog.showAndWait();
+//
+//
+//        }
 
 
     }
