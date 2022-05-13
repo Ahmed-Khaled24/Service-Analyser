@@ -23,7 +23,7 @@ public class Output_Window {
     @FXML
     private TextArea AllowedValues_Area;
     @FXML
-    private TextArea Mandatory_Area
+    private TextArea Mandatory_Area;
     @FXML
     private ListView<API> API_NAMES;
 
@@ -138,7 +138,8 @@ public class Output_Window {
        public void changed(ObservableValue<? extends Field> observableValue, Field field, Field t1) {
            if(t1 != null){
                Field item = RequestField_Names.getSelectionModel().getSelectedItem();
-               FieldName_Area.setText(NewTextArea(item));
+               populateAllTextAreas(item);
+
 
            }
        }
@@ -149,19 +150,14 @@ public class Output_Window {
                 public void changed(ObservableValue<? extends Field> observableValue, Field field, Field t1) {
                     if (t1 != null){
                         Field item = ResponseField_Names.getSelectionModel().getSelectedItem();
-                        FieldName_Area.setText(NewTextArea(item));
+                        populateAllTextAreas(item);
+
+
                     }
                 }
             });
 
-
-
-
-
         }
-
-
-
 
 
 
@@ -177,26 +173,55 @@ public class Output_Window {
 
 
 
+    // these two function will allow me to print on text Area some messages instead of  just the to string method
+    private String AllowedValues_print(ArrayList<String> AllowedValues){
+        return AllowedValues.isEmpty()? "All Values Allowed": AllowedValues.toString();
+    }
+    private String Mandatory_Convert(Boolean mandatory){
+        return mandatory? "YES":"NO";
+    }
 
-
-
+   // This function Stores the Components into a string to be shown on the textArea
     public String toTextArea(Field field ){
 
-        String temp = null;
+        String FieldNames = null , AllowedValues=null,Mandatory=null;
         ArrayList<Field> childrenFields;
+        String result =null;
 
          if(field instanceof ObjectField){
 
             childrenFields = ((ObjectField) field).getChildrenFields();
 
-              temp = childrenFields.get(0).getName() + "\t\t"+ " Allowed Values: " + childrenFields.get(0).getAllowedValues().toString()  + "\t\t"
-                     + " isMandatory " +childrenFields.get(0).isMandatory() + "\n" ;
+
+              FieldNames = childrenFields.get(0).getName() + "\n";
+         AllowedValues = " Allowed Values: " +AllowedValues_print(childrenFields.get(0).getAllowedValues()) +"\n" ;
+              Mandatory =  " isMandatory " +Mandatory_Convert(childrenFields.get(0).isMandatory()) + "\n" ;
+
+
              for(int i=1 ; i<childrenFields.size() ; i++){
-                 temp += childrenFields.get(i).getName() + "\t\t"+ " Allowed Values: " + childrenFields.get(i).getAllowedValues().toString() + "\t\t"
-                         + " isMandatory " +childrenFields.get(i).isMandatory() +"\n";
+                 FieldNames += childrenFields.get(i).getName() + "\n";
+                 AllowedValues += " Allowed Values: " +AllowedValues_print(childrenFields.get(i).getAllowedValues()) +"\n" ;
+                 Mandatory +=  " isMandatory " +Mandatory_Convert(childrenFields.get(i).isMandatory()) + "\n" ;
              }
          }
-        return temp;
+
+         result = FieldNames + "//" + AllowedValues + "//" + Mandatory ;
+
+         return result;
+        }
+
+
+        // This function shows the stored String on the three text Areas
+        private void populateAllTextAreas(Field SelectedItem){
+            String AllText = toTextArea(SelectedItem);
+            // to split the string into the three text Areas
+            String[] Extraction = AllText.split("//");
+
+            FieldName_Area.setText(Extraction[Extraction.length-3]);
+            AllowedValues_Area.setText(Extraction[Extraction.length-2]);
+            Mandatory_Area.setText(Extraction[Extraction.length-1]);
+
+
         }
 
 

@@ -90,10 +90,11 @@ public class User_Input {
                 try {
 
                     FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Output_window.fxml"));
-                    Scene scene = new Scene(fxmlLoader.load(), 1500, 600);
+                    Scene scene = new Scene(fxmlLoader.load(), 1850, 700);
                     dialog.setScene(scene);
                     dialog.setTitle(fileName);
                     dialog.setMaximized(true);
+
 
 
                     dialog.initStyle(StageStyle.DECORATED);

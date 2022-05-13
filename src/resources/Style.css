@@ -24,7 +24,7 @@
 .label{}
 .label{
 
-    -fx-border-width: 5;
+
     -fx-border-color: silver;
 
 
@@ -34,7 +34,7 @@
     -fx-font-family: Cambria ;
     -fx-font-size: 16px;
     -fx-border-color: silver;
-    -fx-border-width: 5;
+
 }
 
 .text-area{}
@@ -45,7 +45,7 @@
 
 #OutPutBorderPane{
     -fx-border-color: silver;
-    -fx-border-width: 5;
+
 
 }
 
