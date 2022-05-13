@@ -17,7 +17,7 @@
 
     <VBox spacing="20">
         <Label alignment="CENTER" prefHeight="40.0" prefWidth="510.0" text="Please Enter The Excel File Below"
-               fx:id="test" id="test">
+               fx:id="Input_Label" id="test">
 
         </Label>
 

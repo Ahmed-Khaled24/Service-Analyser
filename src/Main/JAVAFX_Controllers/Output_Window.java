@@ -135,14 +135,14 @@ public class Output_Window {
 
 
             FieldNames = childrenFields.get(0).getName() + "\n";
-            AllowedValues = " Allowed values:   " + AllowedValues_print(childrenFields.get(0).getAllowedValues()) + "\n";
-            Mandatory = " Mandatory:   "+  Mandatory_Convert(childrenFields.get(0).isMandatory()) + "\n";
+            AllowedValues = "Allowed values:   " + AllowedValues_print(childrenFields.get(0).getAllowedValues()) + "\n";
+            Mandatory = "Mandatory:   "+  Mandatory_Convert(childrenFields.get(0).isMandatory()) + "\n";
 
 
             for (int i = 1; i < childrenFields.size(); i++) {
                 FieldNames += childrenFields.get(i).getName() + "\n";
-                AllowedValues += " Allowed values:   " + AllowedValues_print(childrenFields.get(i).getAllowedValues()) + "\n";
-                Mandatory += " Mandatory:   " + Mandatory_Convert(childrenFields.get(i).isMandatory()) + "\n";
+                AllowedValues += "Allowed values:   " + AllowedValues_print(childrenFields.get(i).getAllowedValues()) + "\n";
+                Mandatory += "Mandatory:   " + Mandatory_Convert(childrenFields.get(i).isMandatory()) + "\n";
             }
 
             result = FieldNames + "//" + AllowedValues + "//" + Mandatory;

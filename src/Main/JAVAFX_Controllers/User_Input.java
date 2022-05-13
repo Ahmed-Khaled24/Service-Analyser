@@ -41,7 +41,7 @@ public class User_Input {
 
     public static String filePath;
     @FXML
-    private Label test;
+    private Label Input_Label;
 
 
     //------------------------------------------------Initialization-----------------------------------------//
@@ -50,7 +50,7 @@ public class User_Input {
 
         // Setting the imported font here because it doesn't work properly in the CSS stylesheet
         Font LabelFont = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 24);
-        test.setFont(LabelFont);
+        Input_Label.setFont(LabelFont);
 
 
         // When opening the program the buttons will be disabled to prevent a bug in the listener if statement
