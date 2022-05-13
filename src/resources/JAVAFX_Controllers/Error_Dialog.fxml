@@ -8,15 +8,15 @@
 
 <?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="JAVAFX_Controllers.Error_Dialog"
-            fx:id="Error_Pane" alignment="CENTER" spacing="20" id="Error_Pane">
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="JAVAFX_Controllers.Error_Dialog"
+      fx:id="Error_Pane" alignment="CENTER" spacing="20" id="Error_Pane">
 
-        <Label text="API data not found" fx:id="Error_Label" alignment="CENTER" id="ErrorLabel"/>
+    <Label text="API data not found" fx:id="Error_Label" alignment="CENTER" id="ErrorLabel"/>
 
 
-        <Button fx:id="Close_Button" text="Close" prefWidth="105" onAction="#OnButtonClicked"
-        BorderPane.alignment="BOTTOM_RIGHT" alignment="CENTER" />
+    <Button fx:id="Close_Button" text="Close" prefWidth="105" onAction="#OnButtonClicked"
+            BorderPane.alignment="BOTTOM_RIGHT" alignment="CENTER"/>
 
 
 </VBox>

@@ -10,56 +10,35 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane id="MainGridPane" fx:id="MainGridPane" alignment="CENTER" hgap="20"  vgap="20" style="-fx-border-color: silver"
-          xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="JAVAFX_Controllers.User_Input">
+<GridPane id="MainGridPane" fx:id="MainGridPane" alignment="CENTER" hgap="20" vgap="20" style="-fx-border-color: silver"
+          xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18"
+          fx:controller="JAVAFX_Controllers.User_Input">
 
 
-<VBox spacing="20">
-        <Label alignment="CENTER" prefHeight="40.0" prefWidth="510.0" text="Please Enter The Excel File Below" fx:id="test" id="test">
+    <VBox spacing="20">
+        <Label alignment="CENTER" prefHeight="40.0" prefWidth="510.0" text="Please Enter The Excel File Below"
+               fx:id="test" id="test">
 
         </Label>
 
 
-    <HBox spacing="10" alignment="CENTER">
-        <TextField fx:id="InputField" editable="false" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <Button fx:id="Browse_Button" onAction="#handleButtonClick" prefWidth="100" text="Browse" />
+        <HBox spacing="10" alignment="CENTER">
+            <TextField fx:id="InputField" editable="false" prefWidth="250" GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"/>
+            <Button fx:id="Browse_Button" onAction="#handleButtonClick" prefWidth="100" text="Browse"/>
 
-    </HBox>
-
-
-            <HBox alignment="CENTER" spacing="20">
-                <Button fx:id="Submit_Button" alignment="CENTER" onAction="#handleButtonClick" prefWidth="105" text="Submit" />
-
-                <Button fx:id="Clear_Button" onAction="#handleButtonClick" prefWidth="105" text="Clear" />
-            </HBox>
+        </HBox>
 
 
+        <HBox alignment="CENTER" spacing="20">
+            <Button fx:id="Submit_Button" alignment="CENTER" onAction="#handleButtonClick" prefWidth="105"
+                    text="Submit"/>
+
+            <Button fx:id="Clear_Button" onAction="#handleButtonClick" prefWidth="105" text="Clear"/>
+        </HBox>
 
 
-</VBox>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </VBox>
 
 
 </GridPane>

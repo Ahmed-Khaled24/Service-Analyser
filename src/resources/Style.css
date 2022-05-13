@@ -1,25 +1,14 @@
-/*.label{}*/
-/*.label{*/
-/*    -fx-font-family: ;*/
-/*    !*-fx-font-family: 'Lato';*!*/
-/*    !*src: url('Lato-Bold.ttf');*!*/
-/*}*/
-
 
 .label{}
 .label{
-
-
     -fx-border-color: silver;
-
-
 }
+
 .list-view{}
 .list-view{
     -fx-font-family: Cambria ;
-    -fx-font-size: 16px;
+    -fx-font-size: 18px;
     -fx-border-color: silver;
-
 }
 
 .text-area{}

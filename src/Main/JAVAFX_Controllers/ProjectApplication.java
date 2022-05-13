@@ -4,6 +4,7 @@ package JAVAFX_Controllers;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class ProjectApplication extends Application {
 
             System.out.println(e.getMessage());
         }
-
+        stage.getIcons().add(new Image("server.png"));
         stage.show();
 
     }

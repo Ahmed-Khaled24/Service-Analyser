@@ -165,6 +165,7 @@ public class User_Input {
                 dialog.setFullScreen(!dialog.isFullScreen());
             }
         });
+        dialog.getIcons().add(new Image("server.png"));
         dialog.showAndWait();
 
     } // Shows the Output window when no bugs are caught
