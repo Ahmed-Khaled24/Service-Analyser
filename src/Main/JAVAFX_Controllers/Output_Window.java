@@ -48,12 +48,6 @@ public class Output_Window {
 
 
 
-
-
-
-
-
-
     public void initialize(){
         // Setting the Label fonts here because importing the font doesnt work in css stylesheet
         Font LabelFont = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 24);
@@ -87,7 +81,10 @@ public class Output_Window {
         API_NAMES.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         // The first Item in the list is selected when u open the window for the first time
-        API_NAMES.getSelectionModel().selectFirst();
+
+
+//        RequestField_Names.getItems().setAll(ReturnedService.getAPIs().get(0).getRequestObjects().get(0));
+//        ResponseField_Names.getItems().setAll(ReturnedService.getAPIs().get(0).getResponseObjects().get(0));
 
 
 
@@ -96,43 +93,57 @@ public class Output_Window {
 
 
 
-        for (int i=0 ; i<ReturnedService.getAPIs().size() ;i++){
-
-            RequestField_Names.getItems().setAll(ReturnedService.getAPIs().get(i).getRequestObjects());
-            ResponseField_Names.getItems().setAll(ReturnedService.getAPIs().get(i).getResponseObjects());
 
 
-            ArrayList<Field> childrenFields = new ArrayList<>();
-            for(int j=0 ; j<ReturnedService.getAPIs().get(i).getRequestObjects().size() ; j++){
-
-                Field temp = ReturnedService.getAPIs().get(i).getResponseObjects().get(j);
-
-                if(temp instanceof ObjectField){
-                    childrenFields = ((ObjectField) temp).getChildrenFields();
-                }else{break;}
-
-//          RequestArea.appendText(toTextArea(childrenFields,temp));
+//        for (int i=0 ; i<ReturnedService.getAPIs().size() ;i++){
+//
+//            RequestField_Names.getItems().setAll(ReturnedService.getAPIs().get(i).getRequestObjects());
+//            ResponseField_Names.getItems().setAll(ReturnedService.getAPIs().get(i).getResponseObjects());
+//
 
 
+
+
+
+//            ArrayList<Field> childrenFields = new ArrayList<>();
+//            for(int j=0 ; j<ReturnedService.getAPIs().get(i).getRequestObjects().size() ; j++){
+//
+//                Field temp = ReturnedService.getAPIs().get(i).getResponseObjects().get(j);
+//
+//                if(temp instanceof ObjectField){
+//                    childrenFields = ((ObjectField) temp).getChildrenFields();
+//                }else{break;}
+//
+////          RequestArea.appendText(toTextArea(childrenFields,temp));
+//
+//
+//            }
+//
+//
+//            for(int k=0 ; k<ReturnedService.getAPIs().get(i).getRequestObjects().size() ; k++){
+//
+//                Field temp = ReturnedService.getAPIs().get(i).getRequestObjects().get(k);
+//
+//                if(temp instanceof ObjectField){
+//                    childrenFields = ((ObjectField) temp).getChildrenFields();
+//                }else{break;}
+//
+////          RequestArea.appendText(toTextArea(childrenFields,temp));
+
+//            }
+
+
+
+        API_NAMES.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<API>() {
+            @Override
+            public void changed(ObservableValue<? extends API> observableValue, API api, API t1) {
+                if(t1 != null){
+                    API selectedAPI = API_NAMES.getSelectionModel().getSelectedItem();
+                    populateRequestObjects(selectedAPI);
+                    populateResponseObjects(selectedAPI);
+                }
             }
-
-
-
-            for(int k=0 ; k<ReturnedService.getAPIs().get(i).getRequestObjects().size() ; k++){
-
-                Field temp = ReturnedService.getAPIs().get(i).getRequestObjects().get(k);
-
-                if(temp instanceof ObjectField){
-                    childrenFields = ((ObjectField) temp).getChildrenFields();
-                }else{break;}
-
-//          RequestArea.appendText(toTextArea(childrenFields,temp));
-
-
-            }
-
-
-
+        });
 
    RequestField_Names.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Field>() {
        @Override
@@ -159,19 +170,6 @@ public class Output_Window {
             });
 
         }
-
-
-
-    }
-
-
-
-
-
-
-
-
-
 
 
     // these two function will allow me to print on text Area some messages instead of  just the to string method
@@ -234,6 +232,19 @@ public class Output_Window {
             }
 
         }
+
+        private void populateRequestObjects(API SelectedAPI){
+        RequestField_Names.getItems().clear();
+            RequestField_Names.getItems().setAll(SelectedAPI.getRequestObjects());
+        }
+    private void populateResponseObjects(API SelectedAPI){
+        ResponseField_Names.getItems().clear();
+
+        ResponseField_Names.getItems().setAll(SelectedAPI.getResponseObjects());
+
+    }
+
+
 
 }
 
