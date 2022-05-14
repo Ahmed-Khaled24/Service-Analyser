@@ -146,7 +146,6 @@ public class User_Input {
             dialog.setTitle(fileName);
             dialog.setMinWidth(1550);
             dialog.setMinHeight(700);
-            dialog.setMaximized(true);
 
 
             dialog.initStyle(StageStyle.DECORATED);
