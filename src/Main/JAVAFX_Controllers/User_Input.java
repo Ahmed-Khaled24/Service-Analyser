@@ -146,7 +146,6 @@ public class User_Input {
             dialog.setTitle(fileName);
             dialog.setMinWidth(1550);
             dialog.setMinHeight(700);
-            dialog.setMaximized(true);
 
 
             dialog.initStyle(StageStyle.DECORATED);
@@ -161,7 +160,7 @@ public class User_Input {
         }
         // Press F1 to toggle Fullscreen
         dialog.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            if (KeyCode.F1.equals(event.getCode())) {
+            if (KeyCode.F11.equals(event.getCode())) {
                 dialog.setFullScreen(!dialog.isFullScreen());
             }
         });
