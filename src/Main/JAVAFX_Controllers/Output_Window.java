@@ -126,18 +126,17 @@ public class Output_Window {
 
 
         ArrayList<Field> childrenFields;
+        String FieldNames = null, AllowedValues = null, Mandatory = null;
+
         String result = null;
 
+        FieldNames = "Current object:   " + RequestField_Names.getSelectionModel().getSelectedItem().getName() + "\n";
+        AllowedValues = "Allowed values:   " + AllowedValues_print(RequestField_Names.getSelectionModel().getSelectedItem().getAllowedValues()) + "\n";
+        Mandatory = "Mandatory:   "+  Mandatory_Convert(RequestField_Names.getSelectionModel().getSelectedItem().isMandatory()) + "\n";
+
         if (field instanceof ObjectField) {
-            String FieldNames = null, AllowedValues = null, Mandatory = null;
 
             childrenFields = ((ObjectField) field).getChildrenFields();
-
-
-            FieldNames = "Current object:   " + childrenFields.get(0).getName() + "\n";
-            AllowedValues = "Allowed values:   " + AllowedValues_print(childrenFields.get(0).getAllowedValues()) + "\n";
-            Mandatory = "Mandatory:   "+  Mandatory_Convert(childrenFields.get(0).isMandatory()) + "\n";
-
 
             for (int i = 0; i < childrenFields.size(); i++) {
                 FieldNames += childrenFields.get(i).getName() + "\n";
@@ -145,10 +144,10 @@ public class Output_Window {
                 Mandatory += "Mandatory:   " + Mandatory_Convert(childrenFields.get(i).isMandatory()) + "\n";
             }
 
-            result = FieldNames + "//" + AllowedValues + "//" + Mandatory;
+
         }
 
-
+        result = FieldNames + "//" + AllowedValues + "//" + Mandatory;
         return result;
     }// This function Stores the Components into a string to be shown on the textArea
 
