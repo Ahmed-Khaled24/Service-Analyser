@@ -196,10 +196,10 @@ public class Utility {
         ancestors.remove("");
 
         // Convert mandatoryStr to Boolean.
-        boolean mandatory = mandatoryStr.equals("Y");
+        boolean mandatory = mandatoryStr.equalsIgnoreCase("Y");
 
         // Convert ioStr to char.
-        char io = ioStr.charAt(0);
+        char io = ioStr.toUpperCase().charAt(0);
 
         // Convert allowedValuesStr to ArrayList.
         String[] tempArr = allowedValuesStr.split(",");
