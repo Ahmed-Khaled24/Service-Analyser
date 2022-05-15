@@ -72,11 +72,11 @@ public class Output_Window {
         API_NAMES.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<API>() {
             @Override
             public void changed(ObservableValue<? extends API> observableValue, API api, API t1) {
-                if (t1 != null) {
+                if (t1 != null || api != null) {
                     API selectedAPI = API_NAMES.getSelectionModel().getSelectedItem();
-                    FieldName_Area.clear();
-                    AllowedValues_Area.clear();
-                    Mandatory_Area.clear();
+                    FieldName_Area.setText("Current API:   "+API_NAMES.getSelectionModel().getSelectedItem().getName() +"\n");
+                    AllowedValues_Area.setText("Operation:   "+(API_NAMES.getSelectionModel().getSelectedItem().getOperation()) +"\n");
+                    Mandatory_Area.setText("URL:   "+API_NAMES.getSelectionModel().getSelectedItem().getURL() +"\n");
                     populateRequestObjects(selectedAPI);
                     populateResponseObjects(selectedAPI);
                 }
@@ -158,9 +158,9 @@ public class Output_Window {
             // to split the string into the three text Areas
             String[] Extraction = AllText.split("//");
 
-            FieldName_Area.setText(Extraction[Extraction.length - 3]);
-            AllowedValues_Area.setText(Extraction[Extraction.length - 2]);
-            Mandatory_Area.setText(Extraction[Extraction.length - 1]);
+            FieldName_Area.appendText(Extraction[Extraction.length - 3]);
+            AllowedValues_Area.appendText(Extraction[Extraction.length - 2]);
+            Mandatory_Area.appendText(Extraction[Extraction.length - 1]);
 
         } else {
             FieldName_Area.clear();

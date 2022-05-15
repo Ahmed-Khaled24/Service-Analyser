@@ -17,7 +17,7 @@
 
 
         <VBox>
-            <Label text="Components" fx:id="ComponentsLabel" prefWidth="900">
+            <Label text="Details" fx:id="ComponentsLabel" prefWidth="900">
                 <padding>
                     <Insets left="5" top="5" bottom="5"/>
                 </padding>
