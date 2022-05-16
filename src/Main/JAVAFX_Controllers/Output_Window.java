@@ -158,9 +158,9 @@ public class Output_Window {
             // to split the string into the three text Areas
             String[] Extraction = AllText.split("//");
 
-            FieldName_Area.appendText(Extraction[Extraction.length - 3]);
-            AllowedValues_Area.appendText(Extraction[Extraction.length - 2]);
-            Mandatory_Area.appendText(Extraction[Extraction.length - 1]);
+            FieldName_Area.setText(Extraction[Extraction.length - 3]);
+            AllowedValues_Area.setText(Extraction[Extraction.length - 2]);
+            Mandatory_Area.setText(Extraction[Extraction.length - 1]);
 
         } else {
             FieldName_Area.clear();
