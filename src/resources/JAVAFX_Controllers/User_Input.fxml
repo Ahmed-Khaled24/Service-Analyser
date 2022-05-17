@@ -10,10 +10,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane id="MainGridPane" fx:id="MainGridPane" alignment="CENTER" hgap="20" vgap="20" style="-fx-border-color: silver"
-          xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18"
-          fx:controller="JAVAFX_Controllers.User_Input">
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.geometry.Insets?>
+<BorderPane id="MainGridPane" fx:id="MainGridPane" style="-fx-border-color: silver"
+            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18"
+            fx:controller="JAVAFX_Controllers.User_Input" >
 
+    <top>
+        <Button fx:id="Mode_Button" prefWidth="30" prefHeight="30" BorderPane.alignment="BOTTOM_RIGHT" alignment="CENTER" onAction="#handleButtonClick">
+
+            <padding>
+                <Insets top="20" right="20"/>
+            </padding>
+
+        </Button>
+
+    </top>
+
+    <center>
+        <GridPane alignment="CENTER">
 
     <VBox spacing="20">
         <Label alignment="CENTER" prefHeight="40.0" prefWidth="510.0" text="Please Enter The Excel File Below"
@@ -40,5 +55,9 @@
 
     </VBox>
 
+    </GridPane>
 
-</GridPane>
+    </center>
+
+
+</BorderPane>

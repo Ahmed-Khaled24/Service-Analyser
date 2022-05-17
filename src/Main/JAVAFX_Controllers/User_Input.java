@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -33,7 +33,9 @@ public class User_Input {
     @FXML
     private Button Clear_Button;
     @FXML
-    private GridPane MainGridPane;
+    private Button Mode_Button;
+    @FXML
+    private BorderPane MainGridPane;
     @FXML
     private TextField InputField;
 
@@ -42,6 +44,8 @@ public class User_Input {
     public static String filePath;
     @FXML
     private Label Input_Label;
+
+    private Boolean isLightMode = true;
 
 
     //------------------------------------------------Initialization-----------------------------------------//
@@ -124,8 +128,21 @@ public class User_Input {
             } catch (Exception a) {
                 a.getCause();
             }
+
+        }else if(e.getSource().equals(Mode_Button)){
+
+            if(isLightMode){
+                MainGridPane.getScene().getStylesheets().add("Dark-Mode.css");
+                isLightMode = false;
+            }else {
+                MainGridPane.getScene().getStylesheets().remove("Dark-Mode.css");
+                isLightMode=true;
+            }
+
         }
     } // Event handler for each button on the stage
+
+
 
 
     //------------------------------------------------Stage Creators-----------------------------------------//
