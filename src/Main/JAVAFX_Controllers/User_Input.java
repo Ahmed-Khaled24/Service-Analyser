@@ -174,6 +174,7 @@ public class User_Input {
             FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Output_window.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1500, 700);
             scene.getStylesheets().add("Style.css");
+            if(!isLightMode) scene.getStylesheets().add("Dark-Mode.css");
             dialog.setScene(scene);
             dialog.setTitle(fileName);
             dialog.setMinWidth(1550);
@@ -210,6 +211,7 @@ public class User_Input {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Error_Dialog.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 300, 150);
+            if(!isLightMode) scene.getStylesheets().add("Dark-Mode.css");
             ErrorDialog.setScene(scene);
             ErrorDialog.setTitle("Error");
             ErrorDialog.setResizable(false);
