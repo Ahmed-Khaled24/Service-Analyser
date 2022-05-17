@@ -17,11 +17,8 @@
             fx:controller="JAVAFX_Controllers.User_Input"  >
 
     <top>
-        <Button fx:id="Mode_Button" id="Mode_Button" prefWidth="30" prefHeight="30" BorderPane.alignment="BOTTOM_RIGHT" alignment="CENTER" onAction="#handleButtonClick">
+        <Button fx:id="Mode_Button" id="Mode_Button" prefWidth="90"  BorderPane.alignment="TOP_RIGHT" alignment="CENTER" onAction="#handleButtonClick">
 
-            <padding>
-                <Insets top="20" right="20"/>
-            </padding>
 
         </Button>
 

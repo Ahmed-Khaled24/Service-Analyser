@@ -23,6 +23,8 @@ import utility.Utility;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class User_Input {
     //------------------------------------------------IDs-----------------------------------------//
@@ -51,12 +53,16 @@ public class User_Input {
     //------------------------------------------------Initialization-----------------------------------------//
     public void initialize() {
 
+        Mode_Button.setText("Dark Mode");
 
 
 
         // Setting the imported font here because it doesn't work properly in the CSS stylesheet
         Font LabelFont = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 24);
         Input_Label.setFont(LabelFont);
+
+        Font ModeFont = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 13);
+        Mode_Button.setFont(ModeFont);
 
 
         // When opening the program the buttons will be disabled to prevent a bug in the listener if statement
@@ -119,6 +125,17 @@ public class User_Input {
             chooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("Excel File", "*.xlsx")
             );
+
+if(ExcelFile_Path != null){
+    String[] Extraction = ExcelFile_Path.split("\\\\");
+    ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(Extraction));
+    arrayList.remove(arrayList.size() - 1);
+    String SavedPath = String.join("\\\\",arrayList);
+
+    chooser.setInitialDirectory(new File(SavedPath));
+}
+
+
             File file = chooser.showOpenDialog(MainGridPane.getScene().getWindow());
 
             try {
@@ -140,7 +157,7 @@ public class User_Input {
 
                 MainGridPane.getScene().getStylesheets().remove("User_Input.css");
                 MainGridPane.getScene().getStylesheets().add("Dark-Mode.css");
-
+                Mode_Button.setText("Light Mode");
 
                 isLightMode = false;
 
@@ -149,7 +166,7 @@ public class User_Input {
                 MainGridPane.getScene().getStylesheets().remove("Dark-Mode.css");
                 MainGridPane.getScene().getStylesheets().add("User_Input.css");
 
-
+                Mode_Button.setText("Dark Mode");
                 isLightMode=true;
             }
 

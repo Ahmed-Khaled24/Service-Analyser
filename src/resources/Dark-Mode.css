@@ -27,10 +27,10 @@
 
 
 
-#Mode_Button{
-    -fx-background-image: url(sun-solid.png);
+/*#Mode_Button{*/
+/*    -fx-background-image: url(sun-solid.png);*/
 
-    -fx-background-repeat: stretch;
-    -fx-background-position: center;
-    -fx-background-size: 20 ;
-}
+/*    -fx-background-repeat: stretch;*/
+/*    -fx-background-position: center;*/
+/*    -fx-background-size: 20 ;*/
+/*}*/
