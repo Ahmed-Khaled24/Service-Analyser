@@ -123,10 +123,16 @@ public class Output_Window {
         String FieldNames = null, AllowedValues = null, Mandatory = null;
 
         String result = null;
-
+        if(field.getIo() == 'I'){
         FieldNames = "Current object:   " + RequestField_Names.getSelectionModel().getSelectedItem().getName() + "\n";
         AllowedValues = "Allowed values:   " + AllowedValues_print(RequestField_Names.getSelectionModel().getSelectedItem().getAllowedValues()) + "\n";
         Mandatory = "Mandatory:   "+  Mandatory_Convert(RequestField_Names.getSelectionModel().getSelectedItem().isMandatory()) + "\n";
+        }else if(field.getIo() == 'O'){
+            FieldNames = "Current object:   " + ResponseField_Names.getSelectionModel().getSelectedItem().getName() + "\n";
+            AllowedValues = "Allowed values:   " + AllowedValues_print(ResponseField_Names.getSelectionModel().getSelectedItem().getAllowedValues()) + "\n";
+            Mandatory = "Mandatory:   "+  Mandatory_Convert(ResponseField_Names.getSelectionModel().getSelectedItem().isMandatory()) + "\n";
+        }
+
 
         if (field instanceof ObjectField) {
 
