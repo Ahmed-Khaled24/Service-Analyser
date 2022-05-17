@@ -66,7 +66,7 @@ public class Utility {
                 if(firstCell == null)                                           // If the row is defined put empty.
                     isObjectRow = false;
 
-                else if (firstCell.toString().contains("API_NAME")) {           // If the row contains an API definition.
+                else if (firstCell.toString().contains("REST Operation Mapping")) {           // If the row contains an API definition.
                     isObjectRow = false;                                        // Stop processing the rows as Field rows.
                     XSSFRow propertiesRow = sheet.getRow(currentRowIndex += 2); // Hold properties row in temporary variable and  currentRow is the name row.
                     currentAPI = constructAPI(currentRow, propertiesRow);       // Create an API.
