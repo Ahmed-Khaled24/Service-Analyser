@@ -11,8 +11,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="JAVAFX_Controllers.Output_Window"
-            stylesheets="/Style.css , /Dark-Mode.css" id="OutPutBorderPane"
->
+             id="OutPutBorderPane" fx:id="OutPutBorderPane">
     <right>
 
 

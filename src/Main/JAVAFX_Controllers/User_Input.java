@@ -41,7 +41,7 @@ public class User_Input {
 
     private String ExcelFile_Path;
 
-    public static String filePath;
+    private static Service s1;
     @FXML
     private Label Input_Label;
 
@@ -50,6 +50,8 @@ public class User_Input {
 
     //------------------------------------------------Initialization-----------------------------------------//
     public void initialize() {
+
+
 
 
         // Setting the imported font here because it doesn't work properly in the CSS stylesheet
@@ -66,11 +68,14 @@ public class User_Input {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String OldText, String NewText) {
                 // Disable the Buttons if the newly added change to the TextField is empty or a space
-                Boolean DisableButton = NewText.isEmpty() || NewText.trim().isEmpty();
+                boolean DisableButton = NewText.isEmpty() || NewText.trim().isEmpty();
                 Submit_Button.setDisable(DisableButton);
                 Clear_Button.setDisable(DisableButton);
             }
         }); // listens to changes in the textfield to enable or disable the buttons.
+
+
+
 
 
     } // Function that occurs automatically at the start of the App
@@ -82,9 +87,9 @@ public class User_Input {
             System.out.println("Submit Pressed");
 
             // Pass the Filepath from the fileChooser to the constructService method
-            filePath = ExcelFile_Path;
+
             System.out.println(ExcelFile_Path);
-            Service s1 = Utility.constructService(filePath);
+            s1 = Utility.constructService(ExcelFile_Path);
             System.out.println("Debugger test");
 
             if (!s1.getAPIs().isEmpty()) {
@@ -132,10 +137,19 @@ public class User_Input {
         }else if(e.getSource().equals(Mode_Button)){
 
             if(isLightMode){
+
+                MainGridPane.getScene().getStylesheets().remove("User_Input.css");
                 MainGridPane.getScene().getStylesheets().add("Dark-Mode.css");
+
+
                 isLightMode = false;
+
             }else {
+
                 MainGridPane.getScene().getStylesheets().remove("Dark-Mode.css");
+                MainGridPane.getScene().getStylesheets().add("User_Input.css");
+
+
                 isLightMode=true;
             }
 
@@ -150,7 +164,7 @@ public class User_Input {
     public void ShowOutputWindow() {
 
         // Extracting the file name to pass it as the title of the output window
-        String[] Extraction = filePath.split("\\\\");
+        String[] Extraction = ExcelFile_Path.split("\\\\");
         String fileName = Extraction[Extraction.length - 1];
 
         // Create an output window when pressing on submit button
@@ -159,6 +173,7 @@ public class User_Input {
 
             FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Output_window.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1500, 700);
+            scene.getStylesheets().add("Style.css");
             dialog.setScene(scene);
             dialog.setTitle(fileName);
             dialog.setMinWidth(1550);
@@ -208,6 +223,10 @@ public class User_Input {
         ErrorDialog.showAndWait();
     } // Shows an error when the service is empty of APIs
 
+    //-----------------------------------Static getter for the ReturnedService-----------------------------------------//
+    public static Service getService1(){
+        return s1 ;
+    }
 
 }
 

@@ -12,13 +12,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Font;
-import utility.Utility;
 
 import java.util.ArrayList;
 
 
 public class Output_Window {
     //------------------------------------------------IDs & Variables-----------------------------------------//
+
     @FXML
     private TextArea FieldName_Area;
     @FXML
@@ -27,8 +27,6 @@ public class Output_Window {
     private TextArea Mandatory_Area;
     @FXML
     private ListView<API> API_NAMES;
-
-    private Service ReturnedService;
 
     @FXML
     private ListView<Field> RequestField_Names;
@@ -58,14 +56,10 @@ public class Output_Window {
 
 
         // Get the returned service from the Utility class
-        ReturnedService = Utility.constructService(User_Input.filePath);
+        Service ReturnedService = User_Input.getService1();
         assert ReturnedService != null;
 
-        // Populate the listview with the API arraylist in the service
-        API_NAMES.getItems().setAll(ReturnedService.getAPIs());
-
-        // Only on element in the list view can be selected at a time
-        API_NAMES.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        populateAPINames(ReturnedService);
 
 
 
@@ -110,7 +104,8 @@ public class Output_Window {
     }
 
     //------------------------------------------------Helper Methods for Initialization-----------------------------------------//
-    // these two function will allow me to print on text Area some messages instead of  just the to string method
+
+    // These two function will allow me to print on text Area some messages instead of  just the to string method
     private String AllowedValues_print(ArrayList<String> AllowedValues) {
         return AllowedValues.isEmpty() ? "All values allowed" : AllowedValues.toString();
     }
@@ -120,7 +115,6 @@ public class Output_Window {
 
 
     }
-
 
     public String toTextArea(Field field) {
 
@@ -151,7 +145,6 @@ public class Output_Window {
         return result;
     }// This function Stores the Components into a string to be shown on the textArea
 
-
     private void populateAllTextAreas(Field SelectedItem) {
         String AllText = toTextArea(SelectedItem);
         if (AllText != null) {
@@ -170,7 +163,15 @@ public class Output_Window {
 
     }  // Shows the stored String on the three text Areas
 
+    //------------------------------------------------ListViews' population-----------------------------------------//
+    private void populateAPINames(Service service){
+        // Populate the listview with the API arraylist in the service
+        API_NAMES.getItems().setAll(service.getAPIs());
 
+        // Only on element in the list view can be selected at a time
+        API_NAMES.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+    }
     private void populateRequestObjects(API SelectedAPI) {
         RequestField_Names.getItems().clear();
         RequestField_Names.getItems().setAll(SelectedAPI.getRequestObjects());
@@ -182,6 +183,7 @@ public class Output_Window {
         ResponseField_Names.getItems().setAll(SelectedAPI.getResponseObjects());
 
     }// Fills the Response fields list with the fields
+
 
 
 }

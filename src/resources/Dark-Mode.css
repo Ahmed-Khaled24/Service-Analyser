@@ -14,7 +14,6 @@
     -fx-focused-mark-color : -fx-focused-text-base-color ;
 
 }
-
 .text-input:focused {
     -fx-highlight-text-fill: ladder(
             -fx-highlight-fill,
@@ -23,4 +22,15 @@
             -fx-dark-text-color  59%,
             -fx-mid-text-color   60%
     );
+
+}
+
+
+
+#Mode_Button{
+    -fx-background-image: url(sun-solid.png);
+
+    -fx-background-repeat: stretch;
+    -fx-background-position: center;
+    -fx-background-size: 20 ;
 }
