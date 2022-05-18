@@ -19,6 +19,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.controlsfx.control.ToggleSwitch;
 import utility.Utility;
 
 import java.io.File;
@@ -35,7 +36,7 @@ public class User_Input {
     @FXML
     private Button Clear_Button;
     @FXML
-    private Button Mode_Button;
+    private ToggleSwitch Mode_Button;
     @FXML
     private BorderPane MainGridPane;
     @FXML
@@ -52,6 +53,8 @@ public class User_Input {
 
     //------------------------------------------------Initialization-----------------------------------------//
     public void initialize() {
+
+
 
         Mode_Button.setText("Dark Mode");
 
@@ -151,29 +154,29 @@ if(ExcelFile_Path != null){
                 a.getCause();
             }
 
-        }else if(e.getSource().equals(Mode_Button)){
-
-            if(isLightMode){
-
-                MainGridPane.getScene().getStylesheets().remove("User_Input.css");
-                MainGridPane.getScene().getStylesheets().add("Dark-Mode.css");
-                Mode_Button.setText("Light Mode");
-
-                isLightMode = false;
-
-            }else {
-
-                MainGridPane.getScene().getStylesheets().remove("Dark-Mode.css");
-                MainGridPane.getScene().getStylesheets().add("User_Input.css");
-
-                Mode_Button.setText("Dark Mode");
-                isLightMode=true;
-            }
-
         }
-    } // Event handler for each button on the stage
+   } // Event handler for each button on the stage
 
+    @FXML
+    private void MoodChange(){
 
+        if(isLightMode){
+
+            MainGridPane.getScene().getStylesheets().remove("User_Input.css");
+            MainGridPane.getScene().getStylesheets().add("Dark-Mode.css");
+            Mode_Button.setText("Light Mode");
+
+            isLightMode = false;
+
+        }else {
+
+            MainGridPane.getScene().getStylesheets().remove("Dark-Mode.css");
+            MainGridPane.getScene().getStylesheets().add("User_Input.css");
+
+            Mode_Button.setText("Dark Mode");
+            isLightMode=true;
+        }
+    }
 
 
     //------------------------------------------------Stage Creators-----------------------------------------//
