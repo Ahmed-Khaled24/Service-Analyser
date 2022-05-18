@@ -56,7 +56,7 @@ public class User_Input {
 
 
 
-        Mode_Button.setText("Dark Mode");
+
 
 
 
@@ -66,7 +66,7 @@ public class User_Input {
 
         Font ModeFont = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 13);
         Mode_Button.setFont(ModeFont);
-
+        Mode_Button.setText("Dark Mode");
 
         // When opening the program the buttons will be disabled to prevent a bug in the listener if statement
         Submit_Button.setDisable(true);
@@ -164,7 +164,7 @@ if(ExcelFile_Path != null){
 
             MainGridPane.getScene().getStylesheets().remove("User_Input.css");
             MainGridPane.getScene().getStylesheets().add("Dark-Mode.css");
-            Mode_Button.setText("Light Mode");
+
 
             isLightMode = false;
 
@@ -173,7 +173,7 @@ if(ExcelFile_Path != null){
             MainGridPane.getScene().getStylesheets().remove("Dark-Mode.css");
             MainGridPane.getScene().getStylesheets().add("User_Input.css");
 
-            Mode_Button.setText("Dark Mode");
+
             isLightMode=true;
         }
     }
