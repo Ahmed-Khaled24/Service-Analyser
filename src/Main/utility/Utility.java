@@ -1,11 +1,7 @@
 package utility;
 
 import components.*;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
+import org.apache.poi.xssf.usermodel.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,7 +20,6 @@ public class Utility {
             ExcelFile = constructExcelObject(filePath);
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println("Exiting the program now.");
             return null;
         }
 
@@ -65,31 +60,30 @@ public class Utility {
                 XSSFCell firstCell = currentRow.getCell(0);
 
                 // If the row is defined put empty.
-                if (firstCell == null)
+                if (firstCell == null) {
                     isObjectRow = false;
-
-                    // If the row contains an API definition.
-                else if (firstCell.toString().contains("REST Operation Mapping")) {
+                }
+                // If the row contains an API definition.
+                else if (firstCell.toString().toUpperCase().contains("REST OPERATION MAPPING")) {
                     isObjectRow = false;                                        // Stop processing the rows as Field rows.
                     XSSFRow propertiesRow = sheet.getRow(currentRowIndex += 2); // Hold properties row in temporary variable and  currentRow is the name row.
                     currentAPI = constructAPI(currentRow, propertiesRow);       // Create an API.
                     service.addAPI(currentAPI);                                 // Store the API in the service
-                } else if (firstCell.toString().equalsIgnoreCase("i/o"))
+                }
+                else if (firstCell.toString().equalsIgnoreCase("i/o")) {
                     isObjectRow = true;                                         // Start processing as Field row.
-
+                }
                 else if (isObjectRow) {
                     Field field = constructField(currentRow);                   // Construct Field object.
 
                     // Store the object in its belonged ArrayList for easy traverse without recursion.
                     // If it is ObjectFiled it should be stored.
                     if (field instanceof ObjectField && currentAPI != null) {
-
                         if (field.getIo() == 'I')
                             currentAPI.addRequestObject(field);
                         else if (field.getIo() == 'O')
                             currentAPI.addResponseObject(field);
                     }
-
                     // If it is StringField and directChild to the API it should be stored.
                     else if (field instanceof StringField && field.getAncestors().isEmpty() && currentAPI != null) {
                         if (field.getIo() == 'I')
@@ -97,13 +91,20 @@ public class Utility {
                         else if (field.getIo() == 'O')
                             currentAPI.addResponseObject(field);
                     }
+                    else if(currentAPI == null){
+                        isObjectRow = false;
+                    }
 
                     // Store the filed in its right position in the API.
-                    if (currentAPI != null) storeField(currentAPI, field);
+                    if (currentAPI != null) {
+                        storeField(currentAPI, field);
+                    }
                 }
             }
             // If empty row stop processing as Field row.
-            else isObjectRow = false;
+            else{
+                isObjectRow = false;
+            }
         }
     }
 
@@ -139,7 +140,7 @@ public class Utility {
         XSSFCell URLCell = propertiesRow.getCell(URL_INDEX);
 
         // Extract the data from the cells into strings.
-        String name = nameCell.toString().replace("REST Operation Mapping", "");
+        String name = nameCell.toString().toUpperCase().replace("REST OPERATION MAPPING", "");
         String operation = operationCell.toString();
         String URL = URLCell.toString();
 
@@ -189,7 +190,7 @@ public class Utility {
 
         // Extract the data from the cells into strings.
         String ioStr = ioCell.toString();
-        String type = typeCell.toString();
+        String type = typeCell.toString().toLowerCase();
         String fullName = fullNameCell.toString();
         String mandatoryStr = isMandatoryCell.toString();
         String allowedValuesStr = allowedValuesCell.toString();
@@ -212,7 +213,7 @@ public class Utility {
 
         // Check if it is ObjectField or StringField to construct an object.
         Field field;
-        if (type.equalsIgnoreCase("string"))
+        if (type.contains("string"))
             field = new StringField(type, mandatory, allowedValues, name, ancestors, io);
         else
             field = new ObjectField(type, mandatory, allowedValues, name, ancestors, io);
