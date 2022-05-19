@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 public class Utility {
 
-    public static Service constructService(String filePath){
+    public static Service constructService(String filePath) {
 /*
     This function takes Excel file path and return a Service object.
 */
@@ -29,8 +29,8 @@ public class Utility {
         }
 
         // Extract the Excel file name
-         String[] Extraction = filePath.split("\\\\");
-         filePath = Extraction[Extraction.length-1];
+        String[] Extraction = filePath.split("\\\\");
+        filePath = Extraction[Extraction.length - 1];
 
         // Initialize Service object
         Service service = new Service(filePath);
@@ -44,7 +44,7 @@ public class Utility {
         return service;
     }
 
-    private static void analyseExcelSheet(XSSFSheet sheet, Service service){
+    private static void analyseExcelSheet(XSSFSheet sheet, Service service) {
 /*
     This function takes Excel sheet and Service object to analyse the sheet to get the contained APIs and
     store them in the given service object.
@@ -59,47 +59,51 @@ public class Utility {
             so the first cell will be checked to determine what should be done.
         */
             XSSFRow currentRow = sheet.getRow(currentRowIndex);
+
             // Make sure that the row is defined.
-            if(currentRow!=null) {
+            if (currentRow != null) {
                 XSSFCell firstCell = currentRow.getCell(0);
 
-                if(firstCell == null)                                           // If the row is defined put empty.
+                // If the row is defined put empty.
+                if (firstCell == null)
                     isObjectRow = false;
 
-                else if (firstCell.toString().contains("REST Operation Mapping")) {           // If the row contains an API definition.
+                    // If the row contains an API definition.
+                else if (firstCell.toString().contains("REST Operation Mapping")) {
                     isObjectRow = false;                                        // Stop processing the rows as Field rows.
                     XSSFRow propertiesRow = sheet.getRow(currentRowIndex += 2); // Hold properties row in temporary variable and  currentRow is the name row.
                     currentAPI = constructAPI(currentRow, propertiesRow);       // Create an API.
                     service.addAPI(currentAPI);                                 // Store the API in the service
-                }
-
-                else if(firstCell.toString().equalsIgnoreCase("i/o"))
+                } else if (firstCell.toString().equalsIgnoreCase("i/o"))
                     isObjectRow = true;                                         // Start processing as Field row.
 
-                else if(isObjectRow){
+                else if (isObjectRow) {
                     Field field = constructField(currentRow);                   // Construct Field object.
 
                     // Store the object in its belonged ArrayList for easy traverse without recursion.
-                    if(field instanceof ObjectField) {                          // If it is ObjectFiled it should be stored.
-                        assert currentAPI != null;
-                        if(field.getIo() == 'I')
+                    // If it is ObjectFiled it should be stored.
+                    if (field instanceof ObjectField && currentAPI != null) {
+
+                        if (field.getIo() == 'I')
                             currentAPI.addRequestObject(field);
-                        else if(field.getIo() == 'O')
+                        else if (field.getIo() == 'O')
                             currentAPI.addResponseObject(field);
                     }
-                    else if(field instanceof StringField && field.getAncestors().isEmpty()){
-                        assert currentAPI != null;                              // If it is StringField and directChild to the API it should be stored.
-                        if(field.getIo() == 'I')
+
+                    // If it is StringField and directChild to the API it should be stored.
+                    else if (field instanceof StringField && field.getAncestors().isEmpty() && currentAPI != null) {
+                        if (field.getIo() == 'I')
                             currentAPI.addRequestObject(field);
-                        else if(field.getIo() == 'O')
+                        else if (field.getIo() == 'O')
                             currentAPI.addResponseObject(field);
                     }
 
                     // Store the filed in its right position in the API.
-                    storeField(currentAPI, field);
+                    if (currentAPI != null) storeField(currentAPI, field);
                 }
             }
-            else isObjectRow = false;                                           // If empty row stop processing as Field row.
+            // If empty row stop processing as Field row.
+            else isObjectRow = false;
         }
     }
 
