@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public class Utility {
 
-    public static boolean errorWindowLabel;
+    public static boolean errorWindowLabel = false;
 
     public static Service constructService(String filePath) {
 /*
@@ -84,6 +84,7 @@ public class Utility {
                         field = constructField(currentRow);                     // Construct Field object.
                     }
                     catch(NullPointerException e){
+                        errorWindowLabel =  true;
                         System.out.println("Something went wrong.");
                         break;
                     }

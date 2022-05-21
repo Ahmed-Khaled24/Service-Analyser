@@ -48,7 +48,7 @@ public class User_Input {
     @FXML
     private Label Input_Label;
 
-    private Boolean isLightMode = true;
+    private  Boolean isLightMode = true;
 
 
     //------------------------------------------------Initialization-----------------------------------------//
@@ -101,7 +101,9 @@ public class User_Input {
             s1 = Utility.constructService(ExcelFile_Path);
             System.out.println("Debugger test");
 
-            if (!s1.getAPIs().isEmpty()) {
+            if(Utility.errorWindowLabel){
+                ShowErrorWindow();
+            }else if (!s1.getAPIs().isEmpty()) {
                 ShowOutputWindow();
 
             } else {
@@ -222,7 +224,7 @@ if(ExcelFile_Path != null){
 
     } // Shows the Output window when no bugs are caught
 
-    public void ShowErrorWindow() {
+    public  void ShowErrorWindow() {
 
 
         Stage ErrorDialog = new Stage();
