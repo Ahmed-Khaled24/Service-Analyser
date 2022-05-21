@@ -10,6 +10,8 @@ import java.util.Arrays;
 
 public class Utility {
 
+    public static boolean errorWindowLabel;
+
     public static Service constructService(String filePath) {
 /*
     This function takes Excel file path and return a Service object.
@@ -77,7 +79,14 @@ public class Utility {
                     isObjectRow = true;                                         // Start processing as Field row.
                 }
                 else if (isObjectRow) {
-                    Field field = constructField(currentRow);                   // Construct Field object.
+                    Field field;
+                    try {
+                        field = constructField(currentRow);                     // Construct Field object.
+                    }
+                    catch(NullPointerException e){
+                        System.out.println("Something went wrong.");
+                        break;
+                    }
 
                     // Store the object in its belonged ArrayList for easy traverse without recursion.
                     // If it is ObjectFiled it should be stored.
