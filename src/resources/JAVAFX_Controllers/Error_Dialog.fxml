@@ -10,9 +10,10 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="JAVAFX_Controllers.Error_Dialog"
-      fx:id="Error_Pane" alignment="CENTER" spacing="20" id="Error_Pane" >
+      fx:id="Error_Pane" alignment="CENTER" spacing="10" id="Error_Pane" >
 
     <Label text="Invalid API data" fx:id="Error_Label" alignment="CENTER" id="ErrorLabel"/>
+    <Label fx:id="Hint_Label" alignment="CENTER" id="ErrorLabel"/>
 
 
     <Button fx:id="Close_Button" text="Close" prefWidth="105" onAction="#OnButtonClicked"
