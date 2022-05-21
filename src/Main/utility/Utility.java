@@ -63,6 +63,12 @@ public class Utility {
                 if (firstCell == null) {
                     isObjectRow = false;
                 }
+<<<<<<< HEAD
+=======
+                else if (firstCell.toString().isEmpty()){
+                    isObjectRow = false;
+                }
+>>>>>>> 3ce9ce9945b78eadc8f66cb75416e828e11237e0
                 // If the row contains an API definition.
                 else if (firstCell.toString().toUpperCase().contains("REST OPERATION MAPPING")) {
                     isObjectRow = false;                                        // Stop processing the rows as Field rows.
