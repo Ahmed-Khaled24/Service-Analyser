@@ -131,14 +131,14 @@ public class User_Input {
                     new FileChooser.ExtensionFilter("Excel File", "*.xlsx")
             );
 
-if(ExcelFile_Path != null){
-    String[] Extraction = ExcelFile_Path.split("\\\\");
-    ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(Extraction));
-    arrayList.remove(arrayList.size() - 1);
-    String SavedPath = String.join("\\\\",arrayList);
+            if (ExcelFile_Path != null) {
+                String[] Extraction = ExcelFile_Path.split("\\\\");
+                ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(Extraction));
+                arrayList.remove(arrayList.size() - 1);
+                String SavedPath = String.join("\\\\", arrayList);
 
-    chooser.setInitialDirectory(new File(SavedPath));
-}
+                chooser.setInitialDirectory(new File(SavedPath));
+            }
 
 
             File file = chooser.showOpenDialog(MainGridPane.getScene().getWindow());
@@ -164,16 +164,16 @@ if(ExcelFile_Path != null){
 
         if(isLightMode){
 
-            MainGridPane.getScene().getStylesheets().remove("User_Input.css");
-            MainGridPane.getScene().getStylesheets().add("Dark-Mode.css");
-
+//            MainGridPane.getScene().getStylesheets().remove("User_Input.css");
+//            MainGridPane.getScene().getStylesheets().add("Dark-Mode.css");
+            MainGridPane.getScene().getRoot().setStyle("-fx-base:black");
 
             isLightMode = false;
 
         }else {
-
-            MainGridPane.getScene().getStylesheets().remove("Dark-Mode.css");
-            MainGridPane.getScene().getStylesheets().add("User_Input.css");
+            MainGridPane.getScene().getRoot().setStyle("");
+//            MainGridPane.getScene().getStylesheets().remove("Dark-Mode.css");
+//            MainGridPane.getScene().getStylesheets().add("User_Input.css");
 
 
             isLightMode=true;
@@ -196,7 +196,9 @@ if(ExcelFile_Path != null){
             FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Output_window.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1500, 700);
             scene.getStylesheets().add("Style.css");
-            if(!isLightMode) scene.getStylesheets().add("Dark-Mode.css");
+//            if(!isLightMode) scene.getStylesheets().add("Dark-Mode.css");
+            if(!isLightMode) scene.getRoot().setStyle("-fx-base:black");;
+
             dialog.setScene(scene);
             dialog.setTitle(fileName);
             dialog.setMinWidth(1550);
@@ -205,6 +207,7 @@ if(ExcelFile_Path != null){
 
             dialog.initStyle(StageStyle.DECORATED);
             dialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
+            dialog.initStyle(StageStyle.UNDECORATED);
 
 
         } catch (IOException h) {
@@ -233,11 +236,14 @@ if(ExcelFile_Path != null){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ProjectApplication.class.getResource("Error_Dialog.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 300, 150);
-            if(!isLightMode) scene.getStylesheets().add("Dark-Mode.css");
+//            if(!isLightMode) scene.getStylesheets().add("Dark-Mode.css");
+            if(!isLightMode) scene.getRoot().setStyle("-fx-base:black");;
+
             ErrorDialog.setScene(scene);
             ErrorDialog.setTitle("Error");
             ErrorDialog.setResizable(false);
             ErrorDialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
+            ErrorDialog.initStyle(StageStyle.UNDECORATED);
 
 
         } catch (IOException g) {
