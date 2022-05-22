@@ -164,16 +164,17 @@ public class User_Input {
 
         if(isLightMode){
 
-//            MainGridPane.getScene().getStylesheets().remove("User_Input.css");
-//            MainGridPane.getScene().getStylesheets().add("Dark-Mode.css");
             MainGridPane.getScene().getRoot().setStyle("-fx-base:black");
+            MainGridPane.getScene().getStylesheets().add("Dark-Mode.css");
+
 
             isLightMode = false;
 
         }else {
+
+            MainGridPane.getScene().getStylesheets().remove("Dark-Mode.css");
             MainGridPane.getScene().getRoot().setStyle("");
-//            MainGridPane.getScene().getStylesheets().remove("Dark-Mode.css");
-//            MainGridPane.getScene().getStylesheets().add("User_Input.css");
+
 
 
             isLightMode=true;
@@ -207,7 +208,7 @@ public class User_Input {
 
             dialog.initStyle(StageStyle.DECORATED);
             dialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
-            dialog.initStyle(StageStyle.UNDECORATED);
+
 
 
         } catch (IOException h) {
@@ -243,7 +244,7 @@ public class User_Input {
             ErrorDialog.setTitle("Error");
             ErrorDialog.setResizable(false);
             ErrorDialog.initModality(Modality.APPLICATION_MODAL); // set the new window modal
-            ErrorDialog.initStyle(StageStyle.UNDECORATED);
+
 
 
         } catch (IOException g) {
