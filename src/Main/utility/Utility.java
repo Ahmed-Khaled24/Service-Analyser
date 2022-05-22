@@ -59,63 +59,69 @@ public class Utility {
 
             // Make sure that the row is defined.
             if (currentRow != null) {
-                XSSFCell firstCell = currentRow.getCell(0);
-
-                // If the row is defined put empty.
-                if (firstCell == null) {
-                    isObjectRow = false;
-                }
-                else if (firstCell.toString().isEmpty()){
-                    isObjectRow = false;
-                }
-                // If the row contains an API definition.
-                else if (firstCell.toString().toUpperCase().contains("REST OPERATION MAPPING")) {
-                    isObjectRow = false;                                        // Stop processing the rows as Field rows.
-                    XSSFRow propertiesRow = sheet.getRow(currentRowIndex += 2); // Hold properties row in temporary variable and  currentRow is the name row.
-                    currentAPI = constructAPI(currentRow, propertiesRow);       // Create an API.
-                    service.addAPI(currentAPI);                                 // Store the API in the service
-                }
-                else if (firstCell.toString().equalsIgnoreCase("i/o")) {
-                    isObjectRow = true;                                         // Start processing as Field row.
-                }
-                else if (isObjectRow) {
-                    Field field;
-                    try {
-                        field = constructField(currentRow);                     // Construct Field object.
-                    }
-                    catch(NullPointerException e){
-                        errorWindowLabel =  true;
-                        System.out.println("Something went wrong.");
-                        break;
-                    }
-
-                    // Store the object in its belonged ArrayList for easy traverse without recursion.
-                    // If it is ObjectFiled it should be stored.
-                    if (field instanceof ObjectField && currentAPI != null) {
-                        if (field.getIo() == 'I')
-                            currentAPI.addRequestObject(field);
-                        else if (field.getIo() == 'O')
-                            currentAPI.addResponseObject(field);
-                    }
-                    // If it is StringField and directChild to the API it should be stored.
-                    else if (field instanceof StringField && field.getAncestors().isEmpty() && currentAPI != null) {
-                        if (field.getIo() == 'I')
-                            currentAPI.addRequestObject(field);
-                        else if (field.getIo() == 'O')
-                            currentAPI.addResponseObject(field);
-                    }
-                    else if(currentAPI == null){
+                    XSSFCell firstCell = currentRow.getCell(0);
+                    // If the row is defined put empty.
+                    if (firstCell == null) {
                         isObjectRow = false;
                     }
-
-                    // Store the filed in its right position in the API.
-                    if (currentAPI != null) {
-                        storeField(currentAPI, field);
+                    else if (firstCell.toString().isEmpty()){
+                        isObjectRow = false;
                     }
-                }
+                    // If the row contains an API definition.
+                    else if (firstCell.toString().toUpperCase().contains("REST OPERATION MAPPING")) {
+                        isObjectRow = false;                                        // Stop processing the rows as Field rows.
+                        XSSFRow propertiesRow = sheet.getRow(currentRowIndex += 2); // Hold properties row in temporary variable and  currentRow is the name row.
+                        currentAPI = constructAPI(currentRow, propertiesRow);       // Create an API.
+                        service.addAPI(currentAPI);                                 // Store the API in the service
+                    }
+                    else if (firstCell.toString().equalsIgnoreCase("i/o")) {
+                        isObjectRow = true;                                         // Start processing as Field row.
+                    }
+                    else if (isObjectRow) {
+                        Field field;
+                        // Check for NullPointerExceptions during constructing a field.
+                        try {
+                            field = constructField(currentRow);                     // Construct Field object.
+                        }
+                        catch(NullPointerException e){
+                            errorWindowLabel =  true;
+                            System.out.println("Something went wrong.");
+                            break;
+                        }
+
+                        // Store the filed in its right position in the API.
+                        Field checker = null;                                       // To check if the field stored in currentAPI correctly.
+                        if (currentAPI != null) {
+                            checker = storeField(currentAPI, field);
+                        }
+
+                        // Store the object in its belonged ArrayList for easy traverse without recursion.
+                        // If it is ObjectFiled it should be stored.
+                        if (field instanceof ObjectField ) {
+                            if(currentAPI != null && checker != null){
+                                if (field.getIo() == 'I')
+                                    currentAPI.addRequestObject(field);
+                                else if (field.getIo() == 'O')
+                                    currentAPI.addResponseObject(field);
+                            }
+                        }
+                        // If it is StringField and directChild to the API it should be stored.
+                        else if (field instanceof StringField ) {
+                            if(field.getAncestors().isEmpty() && currentAPI != null && checker != null) {
+                                if (field.getIo() == 'I')
+                                    currentAPI.addRequestObject(field);
+                                else if (field.getIo() == 'O')
+                                    currentAPI.addResponseObject(field);
+                            }
+                        }
+                        else if(currentAPI == null){
+                            isObjectRow = false;
+                        }
+                    }
             }
+
             // If empty row stop processing as Field row.
-            else{
+            else {
                 isObjectRow = false;
             }
         }
@@ -235,13 +241,14 @@ public class Utility {
         return field;
     }
 
-    private static void storeField(API api, Field field) {
+    private static Field storeField(API api, Field field) {
 /*
     This function takes API and Filed objects and store the Filed in its right position in The API object.
 */
         // If the Field object has no ancestors.
         if (field.getAncestors().isEmpty()) {
             api.addField(field);
+            return field;
         }
         // If the Field object has ancestors.
         else {
@@ -250,11 +257,17 @@ public class Utility {
             ObjectField directParent = api.find(ancestors.get(0));
 
             // Loop through the list of ancestors until find the directParent.
-            for (int i = 1; i < ancestors.size(); i++)
-                if (directParent != null) directParent = directParent.find(ancestors.get(i));
-
+            for (int i = 1; i < ancestors.size(); i++) {
+                if (directParent != null) {
+                    directParent = directParent.find(ancestors.get(i));
+                }
+            }
             // Add field to its directParent childrenFields ArrayList.
-            if (directParent != null) directParent.addChildField(field);
+            if (directParent != null){
+                directParent.addChildField(field);
+                return field;
+            }
+            return null;
         }
     }
 
