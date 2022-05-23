@@ -90,7 +90,7 @@ public class Utility {
                         }
 
                         // Store the filed in its right position in the API.
-                        Field checker = null;                                       // To check if the field stored in currentAPI correctly.
+                        boolean checker = false;                                       // To check if the field stored in currentAPI correctly.
                         if (currentAPI != null) {
                             checker = storeField(currentAPI, field);
                         }
@@ -98,7 +98,7 @@ public class Utility {
                         // Store the object in its belonged ArrayList for easy traverse without recursion.
                         // If it is ObjectFiled it should be stored.
                         if (field instanceof ObjectField ) {
-                            if(currentAPI != null && checker != null){
+                            if(currentAPI != null && checker){
                                 if (field.getIo() == 'I')
                                     currentAPI.addRequestObject(field);
                                 else if (field.getIo() == 'O')
@@ -107,7 +107,7 @@ public class Utility {
                         }
                         // If it is StringField and directChild to the API it should be stored.
                         else if (field instanceof StringField ) {
-                            if(field.getAncestors().isEmpty() && currentAPI != null && checker != null) {
+                            if(field.getAncestors().isEmpty() && currentAPI != null && checker) {
                                 if (field.getIo() == 'I')
                                     currentAPI.addRequestObject(field);
                                 else if (field.getIo() == 'O')
@@ -189,7 +189,7 @@ public class Utility {
         return ancestors;
     }
 
-    private static Field constructField(XSSFRow thisRow) {
+    private static Field constructField(XSSFRow fieldDataRow) {
 /*
     This function takes Excel row and return a Field Object (StringObject or ObjectField depends on the type column).
 */
@@ -201,11 +201,11 @@ public class Utility {
         final int ALLOWED_VALUES_INDEX = 3;
 
         // Hold the wanted cells in temporary variables.
-        XSSFCell ioCell = thisRow.getCell(IO_INDEX);
-        XSSFCell typeCell = thisRow.getCell(TYPE_INDEX);
-        XSSFCell fullNameCell = thisRow.getCell(FULL_NAME_INDEX);
-        XSSFCell isMandatoryCell = thisRow.getCell(IS_MANDATORY_INDEX);
-        XSSFCell allowedValuesCell = thisRow.getCell(ALLOWED_VALUES_INDEX);
+        XSSFCell ioCell = fieldDataRow.getCell(IO_INDEX);
+        XSSFCell typeCell = fieldDataRow.getCell(TYPE_INDEX);
+        XSSFCell fullNameCell = fieldDataRow.getCell(FULL_NAME_INDEX);
+        XSSFCell isMandatoryCell = fieldDataRow.getCell(IS_MANDATORY_INDEX);
+        XSSFCell allowedValuesCell = fieldDataRow.getCell(ALLOWED_VALUES_INDEX);
 
         // Extract the data from the cells into strings.
         String ioStr = ioCell.toString();
@@ -241,19 +241,19 @@ public class Utility {
         return field;
     }
 
-    private static Field storeField(API api, Field field) {
+    private static boolean storeField(API api, Field fieldToStore) {
 /*
     This function takes API and Filed objects and store the Filed in its right position in The API object.
 */
         // If the Field object has no ancestors.
-        if (field.getAncestors().isEmpty()) {
-            api.addField(field);
-            return field;
+        if (fieldToStore.getAncestors().isEmpty()) {
+            api.addField(fieldToStore);
+            return true;
         }
         // If the Field object has ancestors.
         else {
             // Get the list of ancestors.
-            ArrayList<String> ancestors = field.getAncestors();
+            ArrayList<String> ancestors = fieldToStore.getAncestors();
             ObjectField directParent = api.find(ancestors.get(0));
 
             // Loop through the list of ancestors until find the directParent.
@@ -262,12 +262,12 @@ public class Utility {
                     directParent = directParent.find(ancestors.get(i));
                 }
             }
-            // Add field to its directParent childrenFields ArrayList.
+            // Add fieldToStore to its directParent childrenFields ArrayList.
             if (directParent != null){
-                directParent.addChildField(field);
-                return field;
+                directParent.addChildField(fieldToStore);
+                return true;
             }
-            return null;
+            return false;
         }
     }
 
