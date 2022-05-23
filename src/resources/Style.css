@@ -21,15 +21,7 @@
     -fx-font-size: 18px;
 }
 
-.list-view{}
-.list-view .scroll-bar .thumb{
-    -fx-background-color: #737373;
-}
-.text-area{}
-.text-area .scroll-bar .thumb{
-    -fx-background-color: #737373;
 
-}
 
 
 
