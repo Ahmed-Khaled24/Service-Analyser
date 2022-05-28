@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class User_Input {
-    //------------------------------------------------IDs-----------------------------------------//
+    //------------------------------------------------FX IDs-----------------------------------------//
     @FXML
     private Button Browse_Button;
     @FXML
@@ -38,15 +38,18 @@ public class User_Input {
     @FXML
     private ToggleSwitch Mode_Button;
     @FXML
-    private BorderPane MainGridPane;
+    private BorderPane MainBorderPane;
     @FXML
     private TextField InputField;
+
+    @FXML
+    private Label Input_Label;
+
+    //------------------------------------------------Global Variables-----------------------------------------//
 
     private String ExcelFile_Path;
 
     private static Service s1;
-    @FXML
-    private Label Input_Label;
 
     private  Boolean isLightMode = true;
 
@@ -64,6 +67,7 @@ public class User_Input {
         Font LabelFont = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 24);
         Input_Label.setFont(LabelFont);
 
+        // setting font for the dark mode toggle switch
         Font ModeFont = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 13);
         Mode_Button.setFont(ModeFont);
         Mode_Button.setText("Dark Mode");
@@ -141,7 +145,7 @@ public class User_Input {
             }
 
 
-            File file = chooser.showOpenDialog(MainGridPane.getScene().getWindow());
+            File file = chooser.showOpenDialog(MainBorderPane.getScene().getWindow());
 
             try {
                 if (file != null) {
@@ -164,23 +168,23 @@ public class User_Input {
 
         if(isLightMode){
 
-            MainGridPane.getScene().getRoot().setStyle("-fx-base:black");
-            MainGridPane.getScene().getStylesheets().add("Dark-Mode.css");
+            MainBorderPane.getScene().getRoot().setStyle("-fx-base:black");
+            MainBorderPane.getScene().getStylesheets().add("Dark-Mode.css");
 
 
             isLightMode = false;
 
         }else {
 
-            MainGridPane.getScene().getStylesheets().remove("Dark-Mode.css");
-            MainGridPane.getScene().getRoot().setStyle("");
+            MainBorderPane.getScene().getStylesheets().remove("Dark-Mode.css");
+            MainBorderPane.getScene().getRoot().setStyle("");
 
 
 
 
             isLightMode=true;
         }
-    }
+    } // Event handler for the mouse click action of the dark mode toggle switch
 
 
     //------------------------------------------------Stage Creators-----------------------------------------//
