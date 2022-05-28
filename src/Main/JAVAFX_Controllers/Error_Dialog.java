@@ -1,6 +1,7 @@
 package JAVAFX_Controllers;
 
 import components.Service;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,7 +22,7 @@ public class Error_Dialog {
     private Button Close_Button;
 
     //------------------------------------------------Initialization-----------------------------------------//
-    public void initialize(){
+    public void initialize() {
         // Setting the Label fonts here because importing the font doesn't work in css stylesheet
         Font LabelFont = Font.loadFont(getClass().getResourceAsStream("Lato-Bold.ttf"), 18);
         Error_Label.setFont(LabelFont);
@@ -30,21 +31,24 @@ public class Error_Dialog {
         Hint_Label.setFont(HintFont);
 
         Service ReturnedService = User_Input.getService1();
-        if(Utility.errorWindowLabel){
+        if (Utility.errorWindowLabel) {
             String CurrentAPI = ReturnedService.getAPIs().get(ReturnedService.getAPIs().size() - 1).getName();
-            Error_Label.setText("Error in "+CurrentAPI+" data rows");
+            Error_Label.setText("Error in " + CurrentAPI + " data rows");
             Hint_Label.setText("Check your excel file");
             Utility.errorWindowLabel = false;
 
-        }else{
+        } else {
             Hint_Label.setText("Your excel file is empty");
         }
     }
 
     //------------------------------------------------Event Handlers-----------------------------------------//
     @FXML
-    public void OnButtonClicked(){
-        Stage thisStage = (Stage) Error_Pane.getScene().getWindow();
-        thisStage.close();
-    }
+    public void OnButtonClicked(ActionEvent e) {
+        if (e.getSource().equals(Close_Button)) {
+            Stage thisStage = (Stage) Error_Pane.getScene().getWindow();
+            thisStage.close();
+        }
+
+    } // Event Handler for the buttons clicked
 }

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 
 public class Output_Window {
-    //------------------------------------------------IDs & Variables-----------------------------------------//
+    //------------------------------------------------FX IDs-----------------------------------------//
 
     @FXML
     private TextArea FieldName_Area;
@@ -36,7 +36,6 @@ public class Output_Window {
     private Label ComponentsLabel;
     @FXML
     private Label RequestLabel;
-
 
     @FXML
     private Label ResponseLabel;
@@ -59,8 +58,8 @@ public class Output_Window {
         Service ReturnedService = User_Input.getService1();
         assert ReturnedService != null;
 
+        // fills the API names listview with the array list from returned service
         populateAPINames(ReturnedService);
-
 
 
         API_NAMES.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<API>() {
@@ -68,9 +67,9 @@ public class Output_Window {
             public void changed(ObservableValue<? extends API> observableValue, API api, API t1) {
                 if (t1 != null || api != null) {
                     API selectedAPI = API_NAMES.getSelectionModel().getSelectedItem();
-                    FieldName_Area.setText("Current API:   "+API_NAMES.getSelectionModel().getSelectedItem().getName() +"\n");
-                    AllowedValues_Area.setText("Operation:   "+(API_NAMES.getSelectionModel().getSelectedItem().getOperation()) +"\n");
-                    Mandatory_Area.setText("URL:   "+API_NAMES.getSelectionModel().getSelectedItem().getURL() +"\n");
+                    FieldName_Area.setText("Current API:   " + API_NAMES.getSelectionModel().getSelectedItem().getName() + "\n");
+                    AllowedValues_Area.setText("Operation:   " + (API_NAMES.getSelectionModel().getSelectedItem().getOperation()) + "\n");
+                    Mandatory_Area.setText("URL:   " + API_NAMES.getSelectionModel().getSelectedItem().getURL() + "\n");
                     populateRequestObjects(selectedAPI);
                     populateResponseObjects(selectedAPI);
                 }
@@ -123,14 +122,14 @@ public class Output_Window {
         String FieldNames = null, AllowedValues = null, Mandatory = null;
 
         String result = null;
-        if(field.getIo() == 'I'){
-        FieldNames = "Current object:   " + RequestField_Names.getSelectionModel().getSelectedItem().getName() + "\n";
-        AllowedValues = "Allowed values:   " + AllowedValues_print(RequestField_Names.getSelectionModel().getSelectedItem().getAllowedValues()) + "\n";
-        Mandatory = "Mandatory:   "+  Mandatory_Convert(RequestField_Names.getSelectionModel().getSelectedItem().isMandatory()) + "\n";
-        }else if(field.getIo() == 'O'){
+        if (field.getIo() == 'I') {
+            FieldNames = "Current object:   " + RequestField_Names.getSelectionModel().getSelectedItem().getName() + "\n";
+            AllowedValues = "Allowed values:   " + AllowedValues_print(RequestField_Names.getSelectionModel().getSelectedItem().getAllowedValues()) + "\n";
+            Mandatory = "Mandatory:   " + Mandatory_Convert(RequestField_Names.getSelectionModel().getSelectedItem().isMandatory()) + "\n";
+        } else if (field.getIo() == 'O') {
             FieldNames = "Current object:   " + ResponseField_Names.getSelectionModel().getSelectedItem().getName() + "\n";
             AllowedValues = "Allowed values:   " + AllowedValues_print(ResponseField_Names.getSelectionModel().getSelectedItem().getAllowedValues()) + "\n";
-            Mandatory = "Mandatory:   "+  Mandatory_Convert(ResponseField_Names.getSelectionModel().getSelectedItem().isMandatory()) + "\n";
+            Mandatory = "Mandatory:   " + Mandatory_Convert(ResponseField_Names.getSelectionModel().getSelectedItem().isMandatory()) + "\n";
         }
 
 
@@ -170,7 +169,7 @@ public class Output_Window {
     }  // Shows the stored String on the three text Areas
 
     //------------------------------------------------ListViews' population-----------------------------------------//
-    private void populateAPINames(Service service){
+    private void populateAPINames(Service service) {
         // Populate the listview with the API arraylist in the service
         API_NAMES.getItems().setAll(service.getAPIs());
 
@@ -178,6 +177,7 @@ public class Output_Window {
         API_NAMES.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
     }
+
     private void populateRequestObjects(API SelectedAPI) {
         RequestField_Names.getItems().clear();
         RequestField_Names.getItems().setAll(SelectedAPI.getRequestObjects());
@@ -189,7 +189,6 @@ public class Output_Window {
         ResponseField_Names.getItems().setAll(SelectedAPI.getResponseObjects());
 
     }// Fills the Response fields list with the fields
-
 
 
 }
