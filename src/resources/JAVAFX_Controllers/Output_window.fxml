@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import javafx.scene.text.Font?>
 <?import javafx.geometry.Insets?>
+
+
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="JAVAFX_Controllers.Output_Window"
              id="OutPutBorderPane" fx:id="OutPutBorderPane">
     <right>
-
-
         <VBox>
             <Label text="Details" fx:id="ComponentsLabel" prefWidth="900">
                 <padding>
@@ -22,9 +18,6 @@
                 </padding>
 
             </Label>
-
-
-
             <HBox VBox.vgrow="ALWAYS">
 
                 <TextArea editable="false" fx:id="FieldName_Area" VBox.vgrow="ALWAYS" prefWidth="300"/>
@@ -68,12 +61,8 @@
                 <padding>
                     <Insets left="5" top="5" bottom="5"/>
                 </padding>
-
             </Label>
-
-
             <ListView fx:id="API_NAMES" VBox.vgrow="ALWAYS" >
-
             </ListView>
         </VBox>
     </left>

@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="JAVAFX_Controllers.Error_Dialog"
-      fx:id="Error_Pane" alignment="CENTER" spacing="10" id="Error_Pane" >
+      fx:id="Error_Pane" alignment="CENTER" spacing="10" id="Error_Pane">
 
     <Label text="Invalid API data" fx:id="Error_Label" alignment="CENTER" id="ErrorLabel"/>
     <Label fx:id="Hint_Label" alignment="CENTER" id="ErrorLabel"/>
-
-
     <Button fx:id="Close_Button" text="Close" prefWidth="105" onAction="#OnButtonClicked"
             BorderPane.alignment="BOTTOM_RIGHT" alignment="CENTER"/>
 

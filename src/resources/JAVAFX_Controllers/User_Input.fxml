@@ -3,54 +3,37 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.geometry.Insets?>
 <?import org.controlsfx.control.ToggleSwitch?>
-<BorderPane id="MainGridPane" fx:id="MainGridPane" style="-fx-border-color: silver"
+
+<BorderPane id="MainGridPane" fx:id="MainBorderPane" style="-fx-border-color: silver"
             xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18"
             fx:controller="JAVAFX_Controllers.User_Input"  >
 
     <top>
-        <ToggleSwitch fx:id="Mode_Button" id="Mode_Button" prefWidth="105"  BorderPane.alignment="TOP_RIGHT" alignment="CENTER" onMouseClicked="#MoodChange" >
-
-
-        </ToggleSwitch>
-
-
+        <ToggleSwitch fx:id="Mode_Button" id="Mode_Button" prefWidth="105"  BorderPane.alignment="TOP_RIGHT" alignment="CENTER" onMouseClicked="#MoodChange" />
     </top>
 
     <center>
         <GridPane alignment="CENTER">
-
     <VBox spacing="20">
         <Label alignment="CENTER" prefHeight="40.0" prefWidth="510.0" text="Please Enter The Excel File Below"
-               fx:id="Input_Label" id="Input_label"  >
-
-        </Label>
-
+               fx:id="Input_Label" id="Input_label"  />
 
         <HBox spacing="10" alignment="CENTER">
             <TextField fx:id="InputField" editable="false" prefWidth="250" GridPane.columnIndex="0"
                        GridPane.rowIndex="1"/>
             <Button fx:id="Browse_Button" onAction="#handleButtonClick" prefWidth="100" text="Browse"/>
-
         </HBox>
-
 
         <HBox alignment="CENTER" spacing="20">
             <Button fx:id="Submit_Button" alignment="CENTER" onAction="#handleButtonClick" prefWidth="105"
                     text="Submit"/>
-
             <Button fx:id="Clear_Button" onAction="#handleButtonClick" prefWidth="105" text="Clear"/>
         </HBox>
-
 
     </VBox>
 
